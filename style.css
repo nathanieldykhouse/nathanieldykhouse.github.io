@@ -1,0 +1,12 @@
+#mainHeader{
+ text-align: center;
+}
+
+.scrollBox{
+    margin: auto;
+    width: 10%;
+    height: 10%;
+    border-color: black;
+    border-width: 4px;
+    background-color: gray;
+}
