@@ -7,6 +7,17 @@
         <h1 style="text-align: center">Clover's Graph Generator</h1>
         <canvas id="graphOutputCanvas"></canvas>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-        <script src="main.js"></script>
+        <script>
+            const xyValues = [
+                {x:1, y:5},
+                {x:2, y:3},
+                {x:3, y:5}
+            ];
+            const myChart = new Chart("myChart",{
+                type: "scatter",
+                data: {2,5,3},
+                options: {"a, b, c"}
+            });
+        </script>
     </body>
 </html>
