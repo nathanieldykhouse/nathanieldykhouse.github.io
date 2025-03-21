@@ -242,4 +242,29 @@ function newDonutChart(){
     });
 }
 
+//analysis table
+
+
+function getPercentages(rawValues){
+    let percentageList = [];
+    var sumAllNums = 0;
+    for(var curIndex = 0; curIndex < rawValues.length; curIndex++){
+        sumAllNums += rawValues[i];
+    }
+    for(var i = 0; i < rawValues.length; i++){
+        let percentage = rawValues[i]/sumAllNums;
+        
+    }
+}
+
+function buildTable(){
+    let rawValuesQuery = document.querySelectorAll(".y-input");
+    let rawValues = [];
+    for(var i = 0; i < rawValuesQuery.length; i++){
+        let y = parseFloat(rawValuesQuery[i].value);
+        rawValues.push(y);
+    }
+    getPercentages(rawValues);
+}
+
 resetInputs();
