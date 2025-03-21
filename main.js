@@ -1,17 +1,25 @@
+//current Chart
+var currentChart = null;
 //graph type handler
 var selectedGraphType = document.getElementById("graphType");
 selectedGraphType.onchange = (event) =>{
     var inputText = event.target.value;
-    document.getElementById("verificationText").innerText = inputText;
-        resetInputs();
+    resetInputs();
     if(inputText == "scatter"){
         newScatterplot();
     }
 }
 
+function destroyChart(){
+    if(currentChart){
+        currentChart.destroy();
+        currentChart = null;
+    }
+}
+
 function generateGraph(){
     var newGraphType = document.getElementById("graphType").value;
-
+    destroyChart();
     switch(newGraphType){
         case "bar":
             newBarGraph();
@@ -19,12 +27,17 @@ function generateGraph(){
         case "scatter":
             newScatterplot();
             break;
+        case "line":
+            newLineGraph();
+            break;
+        case "pie":
+            newPieChart();
+            break;
+        case "donut": newDonutChart();
     }
 }
 
 function resetInputs(){
-    let debugText = document.getElementById("verificationText");
-    debugText.innerText = "resetInputs called";
     let container = document.getElementById("inputContainer");
     var childCount = container.children.length;
     for(var i = 0; i < childCount-2; i++){
@@ -55,6 +68,24 @@ function addRow(){
             inputX.placeholder = "x-value";
             inputY.type = "number";
             inputY.placeholder = "y-value";
+            break;
+        case "line":
+            inputX.type = "number";
+            inputX.placeholder = "x-value";
+            inputY.type = "number";
+            inputY.placeholder = "y-value";
+            break;
+        case "pie":
+            inputX.type = "text";
+            inputX.placeholder = "label";
+            inputY.type = "number";
+            inputY.placeholder = "value";
+            break;
+        case "donut":
+            inputX.type = "text";
+            inputX.placeholder = "label";
+            inputY.type = "number";
+            inputY.placeholder = "value";
             break;
     }
     inputX.classList.add("x-input");
@@ -90,31 +121,19 @@ function newBarGraph(){
         yValues.push(y);
     }
     let colors = getAllColors();
-    const myChart = new Chart(document.getElementById("graphOutputCanvas"),{
+    currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
         type: "bar",
         data: {
-            labels: xValues,
             datasets: [{
                 backgroundColor: colors,
                 data: yValues
-            }]
+            }],
+            labels: xValues
         },
         options: {}
     });
 }
 
-/*function newLineGraph(){
-    let xValues = [];
-    let yValues = [];
-    
-    const myChart = new Chart(){
-        type: "line",
-        label: xValues,
-        datasets: [{
-            
-        }]
-    }
-}*/
 
 function newScatterplot(){
     let xyValues=[];
@@ -128,13 +147,95 @@ function newScatterplot(){
         }
     }
     
-    const myChart = new Chart(document.getElementById("graphOutputCanvas"),{
+    currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
         type: "scatter",
         data: {
             datasets: [{
                 pointRadius: 4,
                 pointBackgroundColor: "rgba(0,0,255,1)",
                 data: xyValues
+            }]
+        },
+        options: {}
+    });
+}
+
+function newLineGraph(){
+    let xValuesQuery = document.querySelectorAll(".x-input");
+    let yValuesQuery = document.querySelectorAll(".y-input");
+    let xValues = [];
+    let yValues = [];
+    for(let i = 0; i < xValuesQuery.length; i++){
+        let x = parseFloat(xValuesQuery[i].value);
+        let y = parseFloat(yValuesQuery[i].value);
+        xValues.push(x);
+        yValues.push(y);
+    }
+    
+    currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
+        type: "line",
+        label: xValues,
+        data: {
+            datasets: [{
+                pointRadius: 4,
+                pointBackgroundColor: "rgba(0,0,255,1)",
+                backgroundColor: "rgba(0,0,0,0)",
+                borderColor: "rgba(0,0,255,0.1)",
+                data: yValues
+            }]
+        },
+        options: {}
+    });
+}
+
+function newPieChart(){
+    let xValuesQuery = document.querySelectorAll(".x-input");
+    let yValuesQuery = document.querySelectorAll(".y-input");
+    let xValues = [];
+    let yValues = [];
+    for(let i = 0; i < xValuesQuery.length; i++){
+        let x = xValuesQuery[i].value;
+        let y = parseFloat(yValuesQuery[i].value);
+        xValues.push(x);
+        yValues.push(y);
+    }
+    
+    let colors = getAllColors();
+    
+    currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: colors,
+                data: yValues
+            }]
+        },
+        options: {}
+    });
+}
+
+function newDonutChart(){
+    let xValuesQuery = document.querySelectorAll(".x-input");
+    let yValuesQuery = document.querySelectorAll(".y-input");
+    let xValues = [];
+    let yValues = [];
+    for(let i = 0; i < xValuesQuery.length; i++){
+        let x = xValuesQuery[i].value;
+        let y = parseFloat(yValuesQuery[i].value);
+        xValues.push(x);
+        yValues.push(y);
+    }
+    
+    let colors = getAllColors();
+    
+    currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
+        type: "doughnut",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: colors,
+                data: yValues
             }]
         },
         options: {}
