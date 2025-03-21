@@ -5,7 +5,6 @@
     </head>
     <body style="background-color:gray">
         <h1 style="text-align: center">Nathaniel's Graph Generator</h1>
-        <p id="verificationText">TEXT OF VERIFICATION</p>
         <div id="inputContainer">
         <p>Input <button onclick="addRow()">Add Row</button></p>
             <div class="inputRow">
@@ -17,14 +16,16 @@
             <select name="graphType" id="graphType">
                 <option value="bar">Bar Chart</option>
                 <option value="scatter">Scatterplot</option>
-                <option value ="line">Line Chart</option>
+                <option value="line">Line Chart</option>
                 <option value="pie">Pie Chart</option>
                 <option value="donut">Donut Chart</option>
-                <option value="bubble">Bubble Chart</option>
             </select>
             <button onclick="generateGraph()">Generate Graph</button>
         </div>
         <canvas id="graphOutputCanvas"></canvas>
+        <div id="statsOutputDiv">
+            
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
         <script src="main.js"></script>
     </body>
