@@ -2,11 +2,43 @@
 var currentChart = null;
 //graph type handler
 var selectedGraphType = document.getElementById("graphType");
+var xAxis = [];
+var yAxis = [];
+var xyAxis = [];
+
 selectedGraphType.onchange = (event) =>{
     var inputText = event.target.value;
     resetInputs();
-    if(inputText == "scatter"){
-        newScatterplot();
+    generateGraph();
+}
+
+function checkGraphInfoChange(){
+    let previousXAxis = xAxis;
+    let previousYAxis = yAxis;
+    buildAxes();
+    var xAxisIdentical = true;
+    var yAxisIdentical = true;
+    for(let i = 0; i < xAxis.length; i++){
+        let prevXVal = previousXAxis[i];
+        let curXVal = xAxis[i];
+        if(prevXVal != curXVal){
+            xAxisIdentical = false;
+        }
+    }
+    for(let i = 0; i < yAxis.length; i++){
+        let prevYVal = previousYAxis[i];
+        let curYVal = yAxis[i];
+        if(prevYVal != curYVal){
+            yAxisIdentical = false;
+        }
+    }
+    if(!xAxisIdentical || !yAxisIdentical){
+        generateGraph();
+    } else{
+        xAxis = null;
+        xAxis = previousXAxis;
+        yAxis = null;
+        yAxis = previousYAxis;
     }
 }
 
@@ -20,6 +52,7 @@ function destroyChart(){
 function generateGraph(){
     var newGraphType = document.getElementById("graphType").value;
     destroyChart();
+    buildAxes();
     switch(newGraphType){
         case "bar":
             newBarGraph();
@@ -95,8 +128,8 @@ function addRow(){
         div.remove();
         generateGraph();
     }
-    inputX.addEventListener("input", generateGraph);
-    inputY.addEventListener("input", generateGraph);
+    inputX.addEventListener("input", checkGraphInfoChange);
+    inputY.addEventListener("input", checkGraphInfoChange);
     div.appendChild(inputX);
     div.appendChild(inputY);
     div.appendChild(removeButton);
@@ -107,28 +140,74 @@ function getAllColors(){
     return ["red","green","blue","purple","cyan","brown","orange","light-blue", "yellow","magenta","goldenrod"];
 }
 
+function buildAxes(){
+    var currentGraphType = document.getElementById("graphType").value;
+    var xIsString = false;
+    switch(currentGraphType){
+        case "bar":
+            xIsString = true;
+            break;
+        case "scatter":
+            xIsString = false;
+            break;
+        case "line":
+            xIsString = false;
+            break;
+        case "pie":
+            xIsString = true;
+            break;
+        case "donut":
+            xIsString = true;
+            break;
+    }
+    var xValuesQuery = document.querySelectorAll(".x-input");
+    var yValuesQuery = document.querySelectorAll(".y-input");
+    var xValues = [];
+    var yValues = [];
+    var xyValues = [];
+    if(xIsString){
+        for(var i = 0; i < xValuesQuery.length; i++){
+            var x = xValuesQuery[i].value;
+            var y = parseFloat(yValuesQuery[i].value);
+            if(!isNaN(y)){
+                xValues.push(x);
+                yValues.push(y);
+            }
+        }
+        xAxis = [];
+        xAxis = xValues;
+        yAxis = [];
+        yAxis = yValues;
+    } else{
+        for(let i = 0; i < xValuesQuery.length; i++){
+            let x = parseFloat(xValuesQuery[i].value);
+            let y = parseFloat(yValuesQuery[i].value);
+            if(!isNaN(x) && !isNaN(y)){
+                xyValues.push({x: x, y: y});
+                xValues.push(x);
+                yValues.push(y);
+            }
+        }
+        xAxis = null;
+        xAxis = xValues;
+        yAxis = null;
+        yAxis = yValues;
+        xyAxis = null;
+        xyAxis = xyValues;
+    }
+}
+
 //graph generator
 function newBarGraph(){
-    let xValuesQuery = document.querySelectorAll(".x-input");
-    let yValuesQuery = document.querySelectorAll(".y-input");
-    let xValues = [];
-    let yValues = [];
-    for(var i = 0; i < xValuesQuery.length; i++){
-        let x = xValuesQuery[i].value;
-        let y = parseFloat(yValuesQuery[i].value);
-        
-        xValues.push(x);
-        yValues.push(y);
-    }
     let colors = getAllColors();
     currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
         type: "bar",
         data: {
             datasets: [{
                 backgroundColor: colors,
-                data: yValues
+                data: yAxis
             }],
-            labels: xValues
+            labels: xAxis
         },
         options: {}
     });
@@ -136,24 +215,13 @@ function newBarGraph(){
 
 
 function newScatterplot(){
-    let xyValues=[];
-    let xValues = document.querySelectorAll(".x-input");
-    let yValues = document.querySelectorAll(".y-input");
-    for(let i = 0; i < xValues.length; i++){
-        let x = parseFloat(xValues[i].value);
-        let y = parseFloat(yValues[i].value);
-        if(!isNaN(x) && !isNaN(y)){
-            xyValues.push({x: x, y: y});
-        }
-    }
-    
     currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
         type: "scatter",
         data: {
             datasets: [{
                 pointRadius: 4,
                 pointBackgroundColor: "rgba(0,0,255,1)",
-                data: xyValues
+                data: xyAxis
             }]
         },
         options: {}
@@ -161,27 +229,16 @@ function newScatterplot(){
 }
 
 function newLineGraph(){
-    let xValuesQuery = document.querySelectorAll(".x-input");
-    let yValuesQuery = document.querySelectorAll(".y-input");
-    let xValues = [];
-    let yValues = [];
-    for(let i = 0; i < xValuesQuery.length; i++){
-        let x = parseFloat(xValuesQuery[i].value);
-        let y = parseFloat(yValuesQuery[i].value);
-        xValues.push(x);
-        yValues.push(y);
-    }
-    
     currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
         type: "line",
-        label: xValues,
+        label: xAxis,
         data: {
             datasets: [{
                 pointRadius: 4,
                 pointBackgroundColor: "rgba(0,0,255,1)",
                 backgroundColor: "rgba(0,0,0,0)",
                 borderColor: "rgba(0,0,255,0.1)",
-                data: yValues
+                data: yAxis
             }]
         },
         options: {}
@@ -189,26 +246,14 @@ function newLineGraph(){
 }
 
 function newPieChart(){
-    let xValuesQuery = document.querySelectorAll(".x-input");
-    let yValuesQuery = document.querySelectorAll(".y-input");
-    let xValues = [];
-    let yValues = [];
-    for(let i = 0; i < xValuesQuery.length; i++){
-        let x = xValuesQuery[i].value;
-        let y = parseFloat(yValuesQuery[i].value);
-        xValues.push(x);
-        yValues.push(y);
-    }
-    
     let colors = getAllColors();
-    
     currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
         type: "pie",
         data: {
-            labels: xValues,
+            labels: xAxis,
             datasets: [{
                 backgroundColor: colors,
-                data: yValues
+                data: yAxis
             }]
         },
         options: {}
@@ -216,26 +261,14 @@ function newPieChart(){
 }
 
 function newDonutChart(){
-    let xValuesQuery = document.querySelectorAll(".x-input");
-    let yValuesQuery = document.querySelectorAll(".y-input");
-    let xValues = [];
-    let yValues = [];
-    for(let i = 0; i < xValuesQuery.length; i++){
-        let x = xValuesQuery[i].value;
-        let y = parseFloat(yValuesQuery[i].value);
-        xValues.push(x);
-        yValues.push(y);
-    }
-    
     let colors = getAllColors();
-    
     currentChart = new Chart(document.getElementById("graphOutputCanvas"),{
         type: "doughnut",
         data: {
-            labels: xValues,
+            labels: xAxis,
             datasets: [{
                 backgroundColor: colors,
-                data: yValues
+                data: yAxis
             }]
         },
         options: {}
