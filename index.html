@@ -23,8 +23,18 @@
             <button onclick="generateGraph()">Generate Graph</button>
         </div>
         <canvas id="graphOutputCanvas"></canvas>
+        <br>
         <div id="statsOutputDiv">
-            
+            <select name="tableType" id="tableType">
+                <option value="frequency">Frequency Table</option>
+                <option value="mmmsd">Analysis Table</option>
+            </select>
+            <table id="analysisTable">
+                <thead id="analysisTableHead">
+                </thead>
+                <tbody id="analysisTableBody">
+                </tbody>
+            </table>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
         <script src="main.js"></script>
