@@ -9,3 +9,13 @@
     padding: 2px;
 }
 
+#analysisTable{
+    width: 40%;
+    padding: 2px;
+    border-color: black;
+}
+
+table, th, td {
+    border: 1px solid;
+    text-align: center;
+}
