@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Economic Game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <button onclick="generateNewCustomer()"></button>
+        <div id="mainGameDiv">
+            <div id="playerGui">
+                <div id="balanceInformationDiv">
+                    <p id="playerTotalMoneyDisplay">Total Funds: </p>
+                    <button onclick="toggleMoneyBreakdownScreen()">View Info</button>
+                    <div id="moneyBreakdownOverlay"></div>
+                    <div id="moneyBreakdownScreen">
+                        <button id="moneyBreakdownScreenXButton" onclick="toggleMoneyBreakdownScreen()" style="">X</button>
+                        <table id="reservesTable">
+                            <tr>
+                                <th>Required Reserves</th>
+                                <th>Excess Reserves</th>
+                            </tr>
+                            <tr>
+                                <td id="reservesTableRROutput"></td>
+                                <td id="reservesTableEROutput"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="customerPhaseGui">
+                    <div id="customerInformation">
+                        <p id="customerName"></p>
+                        <p id="customerLoanReqAmt"></p>
+                        <p id="customerTrustwortynessRating"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="customerHandler.js"></script>
+        <script src="menuHandler.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
