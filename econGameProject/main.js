@@ -6,6 +6,7 @@ var excessReserves;
 //policy requirements
 var requiredReservesRatio = 0.10;
 var defaultInterest = 5;
+var interestChange = 0;
 
 //loan tracking
 var loanedFunds = 0;
@@ -21,6 +22,8 @@ document.addEventListener('keydown', function(event){
     }
     if(key == "1"){
         generateNewCustomer();
+    } else if(key == "2"){
+        alert(allCustomers.length);
     }
 })
 
@@ -29,9 +32,12 @@ function generateRandom(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+
+
 //calculate players total available funds
 function calculateFunds(){
-    requiredReserves = playerBank*requiredReservesRatio;
+    let totBal = calcTotalBal();
+    requiredReserves = totBal*requiredReservesRatio;
     excessReserves = playerBank-requiredReserves;
 }
 
@@ -41,11 +47,31 @@ function nextDay(){
     let incOrDec = generateRandom(0,1);
     let amt = generateRandom(1,2);
     if(incOrDec == 0){
-        defaultInterest-amt;
+        defaultInterest-=amt;
     } else{
-        defaultInterest+amt;
+        defaultInterest+=amt;
     }
+    for(let i = 0; i < 3; i++){
+        generateNewCustomer();
+    }
+    const dayDisplay = document.getElementById("curDayDisplay");
+    dayDisplay.innerText = "Day: " + day;
+    incrementAllLoans();
+    updateMoneyDisplay();
+    updateCustomerInfo(unservedCustomers[0]);
 }
 
-updateMoneyDisplay();
+//truncate to decimal place
+function truncNum(num, decimals){
+    const fac = Math.pow(10, decimals);
+    return Math.trunc(num * fac)/fac;
+}
+
+//excessReserves get
+function getExcessReserves(){
+    calculateFunds();
+    return excessReserves;
+}
+//starting commands
+nextDay();
 resetLoanOptions(defaultInterest);
