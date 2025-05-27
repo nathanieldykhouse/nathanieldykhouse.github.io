@@ -1,7 +1,19 @@
 var allCustomers = [];
+var unservedCustomers = [];
 
-var firstNames = ["Jane", "John", "Jack", "Kaitlyn"];
-var lastNames = ["Smith", "Taylor", "House", "Herrema", "Bisbee"];
+var firstNames = ["Jane", "John", "Jack", "Kaitlyn", "Adam", "Sarah", "Mr.", "Mrs.", "Aragorn", "Legolas", "Bruce"];
+var lastNames = ["Smith", "Taylor", "House", "Herrema", "Bisbee", "Moore", "Garcia", "Huber", "Ungrey", "Geurink", "Lancto", "Cook", "Wayne"];
+
+function getCustomerId(id){
+    var custId = -1;
+    for(let i = 0; i < allCustomers.length; i++){
+        if(allCustomers[i].id == id){
+            custId = i;
+            break;
+        }
+    }
+    return custId;
+}
 
 function generateLoanRequestAmt(financialStatus){
     switch(financialStatus){
@@ -26,8 +38,11 @@ function generateNewCustomer(){
     const customer = {
         Name: fullName,
         requestedAmount: loanRequestAmt,
-        trustworthyPercent: trustworthyness
+        trustworthyPercent: trustworthyness,
+        interestPercent: 0,
+        id: 0
     };
+    customer.id = generateRandom(1000,9999);
     allCustomers.push(customer);
-    updateCustomerInfo(allCustomers.length-1);
+    unservedCustomers.push(customer.id);
 }
