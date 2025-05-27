@@ -5,8 +5,17 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div id="newMainGameDiv">
+            <div id="backgroundImage">
+                <img src="">
+            </div>
+        </div>
         <div id="mainGameDiv">
             <div id="playerGui">
+                <div id="dayDiv">
+                    <p id="curDayDisplay">Day: </p>
+                    <button onclick="nextDay()">End Day</button>
+                </div>
                 <div id="balanceInformationDiv">
                     <p id="playerTotalMoneyDisplay">Total Funds: </p>
                     <button onclick="toggleMoneyBreakdownScreen()">View Info</button>
@@ -29,7 +38,7 @@
                     <button onclick="togglePolicyInformationScreen()">Policy Information</button>
                     <div class="overlay" id="policyInformationOverlay"></div>
                     <div class="submenu" id="policyInformationScreen">
-                        <button class="xButton" onclick="togglePolicyInformationScreen()">X</button>
+                        <button class = "xButton" onclick="togglePolicyInformationScreen()">X</button>
                         <table id="policyInfoTable">
                             <tr>
                                 <th>RRR</th>
@@ -42,6 +51,42 @@
                         </table>
                     </div>
                 </div>
+                <div id="loanInformationDiv">
+                    <button onclick="toggleLoanInformationScreen()">Active Loans</button>
+                    <div class="overlay" id="loanInformationOverlay"></div>
+                    <div class="submenu" id="loansInformationScreen">
+                        <button class="xButton" onclick="toggleLoanInformationScreen()">X</button>
+                        <table id="activeLoansTable">
+                            <thead>
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <th>Initial Loan</th>
+                                    <th>Current Value</th>
+                                    <th>Interest Rate</th>
+                                    <th>Days Remaining</th>
+                                </tr>
+                            </thead>
+                            <tbody id="activeLoansTableBody">
+                                <!-- this is where the actual loan information will go -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="overlay" id="collectedLoansOverlay"></div>
+                <div class="submenu" id="collectedLoansDisplay">
+                    <table id="collectedLoans">
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Initial Value</th>
+                                <th>Returned Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="collectedLoansOutput"></tbody>
+                    </table>
+                    <p id="totalGainOutput">Total: </p>
+                    <button id="claimCollectedLoansButton" onclick="hideCollectedLoans()">Claim</button>
+                </div>
                 <div id="customerPhaseGui">
                     <div id="customerInformation">
                         <p id="customerName"></p>
@@ -52,6 +97,8 @@
                         <p id="playerInflationSet">CURPLAYERINFLATION%</p>
                         <button onclick="changeRequestedInflation(1)">↑</button>
                         <button onclick="changeRequestedInflation(-1)">↓</button>
+                        <button onclick="makeLoan()">Give Loan</button>
+                        <button onclick="rejectLoan()">Reject Loan</button>
                     </div>
                 </div>
             </div>
