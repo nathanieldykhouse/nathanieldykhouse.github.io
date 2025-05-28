@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Economic Game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="newMainGameDiv">
+            <div id="backgroundImage">
+                <img src="deskBackdrop.png" id="deskBackdrop">
+            </div>
+            <div id="playerGui">
+                <div id="runInfoScrollButton">
+                    <div class="buttonImageContainer">
+                        <img src="buttonTemplate.png" onclick="displayRunInfo()">
+                        <p class="centeredText">Run Info</p>
+                    </div>
+                </div>
+                <div id="customerInfoButton">
+                    <div class="buttonImageContainer">
+                        <img src="buttonTemplate.png" onclick="displayCustomerInfo()">
+                        <p class="centeredText">Customers</p>
+                    </div>
+                </div>
+                <div id="fundsInfoButton">
+                    <div class="buttonImageContainer">
+                        <img src="buttonTemplate.png" onclick="displayFundsInfo()">
+                        <p class="centeredText">Funds</p>
+                    </div>
+                </div>
+                <div id="loansInfoButton">
+                    <div class="buttonImageContainer">
+                        <img src="buttonTemplate.png" onclick="displayLoansInfo()">
+                        <p class="centeredText">Loans</p>
+                    </div>
+                </div>
+                <div id="policyInfoButton">
+                    <div class="buttonImageContainer">
+                        <img src="buttonTemplate.png" onclick="displayPolicyInfo()">
+                        <p class="centeredText">Policy Info</p>
+                    </div>
+                </div>
+                <div id="nextDayButton">
+                    <div class="buttonImageContainer">
+                        <img src="buttonTemplate.png" onclick="nextDay()">
+                        <p class="centeredText">Next Day</p>
+                    </div>
+                </div>
+            </div>
+            <div id="outputScroll" class="scrollImageContainer">
+                <img src="scroll.png" class="scrollImage">
+                <div id="outputScrollText" class="centeredText">
+
+                </div>
+            </div>
+        </div>
+        <script src="loanHandler.js"></script>
+        <script src="customerHandler.js"></script>
+        <script src="menuHandler.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
