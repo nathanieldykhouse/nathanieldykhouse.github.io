@@ -129,22 +129,22 @@
 .scrollImageContainer{
     position: relative;
     display: inline-block;
-    left:35%;
-    top: 25%;
+    left: 34%;
+    top: 20%;
 }
 
 .scrollImageContainer img{
     display: inline-block;
-    width: 400px;
+    width: 600px;
     height: auto;
-    top: 100px;
-    left: 55%;
+    top: 10px;
+    left: -100px;
 }
 
 .scrollImage{
     position: absolute;
     top: 100px;
-    left: 55%;
+    left: 50%;
 }
 
 .scrollText{
