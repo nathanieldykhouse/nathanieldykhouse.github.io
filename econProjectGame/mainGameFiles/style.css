@@ -127,7 +127,7 @@
 /* classes */
 
 .scrollImageContainer{
-    position: relative;
+    position: absolute;
     display: inline-block;
     left:35%;
     top: 25%;
