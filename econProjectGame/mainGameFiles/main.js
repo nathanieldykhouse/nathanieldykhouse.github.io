@@ -20,11 +20,6 @@ document.addEventListener('keydown', function(event){
     if(key === "Alt" && event.location == 2){
         alert("Hello, Mrs. Moore! If you find any bugs (problems) or have any suggestions, please email me! (nathanieldykhouse@gpsbulldogs.org or nathaniel.dykhouse@gmail.com)");
     }
-    if(key == "1"){
-        generateNewCustomer();
-    } else if(key == "2"){
-        alert(allCustomers.length);
-    }
 })
 
 //generate a random number (inclusive)
