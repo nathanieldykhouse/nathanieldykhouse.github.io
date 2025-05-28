@@ -140,14 +140,12 @@
     height: auto;
     top: 50%;
     left: 40%;
-    transform: translate(-50%, -50%);
 }
 
 .scrollImage{
     position: absolute;
     top: 50%;
     left: 40%;
-    transform: translate(-50%, -50%);
 }
 
 .scrollText{
