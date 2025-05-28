@@ -135,10 +135,10 @@
 
 .scrollImageContainer img{
     display: inline-block;
-    width: 400px;
+    width: 500px;
     height: auto;
     top: 100px;
-    left: 55%;
+    left: 50%;
 }
 
 .scrollImage{
