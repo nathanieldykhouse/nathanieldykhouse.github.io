@@ -127,7 +127,7 @@
 /* classes */
 
 .scrollImageContainer{
-    position: absolute;
+    position: relative;
     display: inline-block;
     left:35%;
     top: 25%;
@@ -135,18 +135,16 @@
 
 .scrollImageContainer img{
     display: inline-block;
-    width: 600px;
+    width: 400px;
     height: auto;
-    top: 50%;
-    left: 40%;
-    transform: translate(-50%, -50%);
+    top: 100px;
+    left: 55%;
 }
 
 .scrollImage{
     position: absolute;
-    top: 50%;
-    left: 40%;
-    transform: translate(-50%, -50%);
+    top: 100px;
+    left: 55%;
 }
 
 .scrollText{
