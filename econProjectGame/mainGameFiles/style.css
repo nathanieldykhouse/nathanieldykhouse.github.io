@@ -138,14 +138,14 @@
     display: inline-block;
     width: 600px;
     height: auto;
-    top: 50%;
-    left: 40%;
+    top: 200px;
+    left: 500px;
 }
 
 .scrollImage{
     position: absolute;
-    top: 50%;
-    left: 40%;
+    top: 200px;
+    left: 200px;
 }
 
 .scrollText{
