@@ -102,31 +102,36 @@ function displayLoansInfo(id){
       newText.classList.add("scrollText");
       outputScroll.appendChild(newText);
     } else{
-      let curCustomer = allCustomers[getCustomerId(accruedLoans[id].belongsToCustomerId)];
-      let strings = ["Name: ", "Initial Value: ", "Current Value: ", "Interest: ", "Days Left: "];
-      for(let i = 0; i < 5; i++){
-        let newText = document.createElement("p");
-        let newStr = strings[i];
-        switch(i){
-          case 0:
-            newStr += curCustomer.Name + "\n";
-            break;
-          case 1:
-            newStr += curCustomer.requestedAmount + "\n";
-            break;
-          case 2:
-            newStr += accruedLoans[id].currentAmount + "\n";
-            break;
-          case 3:
-            newStr += curCustomer.interestPercent + "\n";
-            break;
-          case 4:
-              newStr += accruedLoans[id].daysTillCollection + "\n";
-        }
-        newText.classList.add("scrollText");
-        newText.innerText = newStr;
-        newText.style.width = "200px";
-        outputScroll.appendChild(newText);
+        let newNewline = document.createElement("p");
+        newNewline.innerText = "\n";
+        newNewline.classList.add("scrollText");
+        outputScroll.appendChild(newNewline);
+        let curCustomer = allCustomers[getCustomerId(accruedLoans[id].belongsToCustomerId)];
+        let strings = ["Name: ", "Initial Value: ", "Current Value: ", "Interest: ", "Days Left: "];
+        for(let i = 0; i < 5; i++){
+            let newText = document.createElement("p");
+            let newStr = strings[i];
+            switch(i){
+              case 0:
+                newStr += curCustomer.Name + "\n";
+                break;
+              case 1:
+                newStr += curCustomer.requestedAmount + "\n";
+                break;
+              case 2:
+                newStr += accruedLoans[id].currentAmount + "\n";
+                break;
+              case 3:
+                newStr += curCustomer.interestPercent + "\n";
+                break;
+              case 4:
+                newStr += accruedLoans[id].daysTillCollection + "\n";
+                break;
+            }
+            newText.classList.add("scrollText");
+            newText.innerText = newStr;
+            newText.style.width = "200px";
+            outputScroll.appendChild(newText);
       }
     }
 }
