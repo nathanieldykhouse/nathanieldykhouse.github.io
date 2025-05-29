@@ -102,10 +102,8 @@ function displayLoansInfo(id){
       newText.classList.add("scrollText");
       outputScroll.appendChild(newText);
     } else{
-        let newNewline = document.createElement("p");
-        newNewline.innerText = "\n";
-        newNewline.classList.add("scrollText");
-        outputScroll.appendChild(newNewline);
+        let newBr = document.createElement("br");
+        outputScroll.appendChild(newBr);
         let curCustomer = allCustomers[getCustomerId(accruedLoans[id].belongsToCustomerId)];
         let strings = ["Name: ", "Initial Value: ", "Current Value: ", "Interest: ", "Days Left: "];
         for(let i = 0; i < 5; i++){
