@@ -22,7 +22,7 @@ header {
   margin: 20px;
   align-items: left;
   gap: 1px; /* spacing between dropdowns */
-  width: 400px;
+  width: 50%;
 }
 
 /* dropdown buttons */
