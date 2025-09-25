@@ -75,7 +75,7 @@ header {
 
 .carouselWrapper {
   width: 250px;
-  height: 50%;
+  height: auto;
   position: relative;
 }
 
