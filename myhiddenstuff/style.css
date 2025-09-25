@@ -1,5 +1,6 @@
 .logo {
-  width: 200px;
+  max-width: 200px; /* never bigger than 200px */
+  width: 30%;       /* scales down on smaller screens */
   height: auto;
   margin: 20px auto;
   display: block;
@@ -10,31 +11,35 @@ header {
   background-color: #C1D8DE;
 }
 
-.mainContentContainer{
+.mainContentContainer {
   display: flex;
-  top: 15%;
+  gap: 20px;
+  flex-wrap: wrap; /* stacks on smaller screens */
+  justify-content: center;
+  margin: 20px;
 }
 
 /* container for vertical dropdowns */
 .dropdown-container {
+  flex: 1;             /* take available space */
+  min-width: 250px;    /* don’t shrink too small */
+  max-width: 400px;    /* don’t stretch too wide */
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  align-items: left;
-  gap: 1px; /* spacing between dropdowns */
-  width: 50%;
+  gap: 1px;
 }
 
 /* dropdown buttons */
+
 .dropdownBtn {
   background-color: #2596be;
   color: white;
-  padding: 15px 30px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 1rem;
   border: none;
-  width: 50%; /* fixed width, can adjust */
   cursor: pointer;
   text-align: center;
+  width: 100%;         /* full width of container */
 }
 
 /* dropdown content hidden by default */
@@ -44,7 +49,7 @@ header {
   padding: 0;
   margin: 0;
   background-color: #f9f9f9;
-  width: 50%; /* match button width */
+  width: 100%; /* match button width */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -67,16 +72,26 @@ header {
 
 /* SLIDES AND CAROUSEL */
 
-.carouselEncapsulation{
+.carouselEncapsulation {
+  flex: 2;             /* wider than dropdowns */
+  min-width: 280px;
+  max-width: 600px;    /* keeps it neat */
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: center;
 }
 
 .carouselWrapper {
-  width: 250px;
-  height: auto;
+  width: 100%;
+  max-width: 500px;
   position: relative;
+}
+
+/* size the carousel iamges */
+.slide img{
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Hide the images by default */
@@ -94,7 +109,7 @@ header {
   padding: 16px;
   color: white;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 2rem;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
