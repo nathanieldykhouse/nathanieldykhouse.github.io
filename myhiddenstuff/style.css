@@ -13,7 +13,7 @@ header {
 
 .mainContentContainer {
   display: flex;
-  gap: 20px;
+  gap: 10%;
   flex-wrap: wrap; /* stacks on smaller screens */
   justify-content: center;
   margin: 20px;
