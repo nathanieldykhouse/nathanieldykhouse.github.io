@@ -12,6 +12,7 @@ header {
 
 .mainContentContainer{
   display: flex;
+  top: 5%;
 }
 
 /* container for vertical dropdowns */
