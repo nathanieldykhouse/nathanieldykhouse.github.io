@@ -1,0 +1,121 @@
+.logo {
+  width: 200px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+}
+
+header {
+  padding: 1px;
+  background-color: #C1D8DE;
+}
+
+.mainContentContainer{
+  display: flex;
+}
+
+/* container for vertical dropdowns */
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  align-items: left;
+  gap: 1px; /* spacing between dropdowns */
+  width: 400px;
+}
+
+/* dropdown buttons */
+.dropdownBtn {
+  background-color: #2596be;
+  color: white;
+  padding: 15px 30px;
+  font-size: 16px;
+  border: none;
+  width: 400px; /* fixed width, can adjust */
+  cursor: pointer;
+  text-align: center;
+}
+
+/* dropdown content hidden by default */
+.dropdown-content {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f9f9f9;
+  width: 400px; /* match button width */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* links inside dropdown */
+.dropdown-content li a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-content li a:hover {
+  background-color: #ddd;
+}
+
+/* show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* SLIDES AND CAROUSEL */
+
+.carouselWrapper {
+  width: 250px;
+  height: 50%;
+  position: relative;
+}
+
+/* Hide the images by default */
+.slide {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
