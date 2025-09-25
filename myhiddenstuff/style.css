@@ -89,8 +89,8 @@ header {
   cursor: pointer;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%); /* center vertically */
   width: auto;
-  margin-top: -22px;
   padding: 16px;
   color: white;
   font-weight: bold;
@@ -112,6 +112,13 @@ header {
 }
 
 /* The dots/bullets/indicators */
+
+.carouselDots {
+  text-align: center;
+  margin-top: 10px; /* space between carousel and dots */
+}
+
+
 .dot {
   cursor: pointer;
   height: 15px;
