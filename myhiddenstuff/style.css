@@ -6,6 +6,13 @@
   display: block;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(160deg, #e0f7fa, #c1d8de);
+  margin: 0;
+  padding: 0;
+}
+
 header {
   padding: 1px;
   background-color: #C1D8DE;
@@ -21,6 +28,10 @@ header {
 
 /* container for vertical dropdowns */
 .dropdown-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   flex: 1;             /* take available space */
   min-width: 250px;    /* don’t shrink too small */
   max-width: 600px;    /* don’t stretch too wide */
