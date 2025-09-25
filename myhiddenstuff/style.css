@@ -12,7 +12,7 @@ header {
 
 .mainContentContainer{
   display: flex;
-  top: 5%;
+  top: 15%;
 }
 
 /* container for vertical dropdowns */
@@ -66,6 +66,12 @@ header {
 }
 
 /* SLIDES AND CAROUSEL */
+
+.carouselEncapsulation{
+  display: flex;
+  flex-direction: column;
+  gap 2px;
+}
 
 .carouselWrapper {
   width: 250px;
