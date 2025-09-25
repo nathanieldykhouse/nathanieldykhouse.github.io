@@ -23,7 +23,7 @@ header {
 .dropdown-container {
   flex: 1;             /* take available space */
   min-width: 250px;    /* don’t shrink too small */
-  max-width: 400px;    /* don’t stretch too wide */
+  max-width: 600px;    /* don’t stretch too wide */
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -75,7 +75,7 @@ header {
 .carouselEncapsulation {
   flex: 2;             /* wider than dropdowns */
   min-width: 280px;
-  max-width: 600px;    /* keeps it neat */
+  max-width: 400px;    /* keeps it neat */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,7 +83,7 @@ header {
 
 .carouselWrapper {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   position: relative;
 }
 
