@@ -159,3 +159,9 @@ header {
 .active, .dot:hover {
   background-color: #717171;
 }
+
+.foot{
+  background-color: rgba(60,60,70,0.5);
+  position: absolute;
+  bottom: 0%;
+}
