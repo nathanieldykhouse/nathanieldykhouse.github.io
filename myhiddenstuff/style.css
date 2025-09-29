@@ -162,6 +162,8 @@ header {
 
 .foot{
   background-color: rgba(60,60,70,0.5);
-  position: absolute;
+  position: relative;
   bottom: 0%;
+  width: 100%;
+  text-align: center;
 }
