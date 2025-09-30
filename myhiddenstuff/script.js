@@ -1,3 +1,10 @@
+document.addEventListener('keydown', function(e){
+  if(e.event === 'd'){
+    alert("Remember that the SRiS links are not included, mention that");
+  }
+});
+
+
 let slideIndex = 1;
 showSlides(slideIndex);
 
