@@ -1,5 +1,5 @@
 document.addEventListener('keydown', function(e){
-  if(e.event === 'd'){
+  if(e.key === 'd'){
     alert("Remember that the SRiS links are not included, mention that");
   }
 });
