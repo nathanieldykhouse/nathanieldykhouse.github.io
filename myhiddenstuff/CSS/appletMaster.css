@@ -1,0 +1,166 @@
+/* general settings  */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    /* prevent screen overflow */
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(14px, 1.2vw, 18px);
+    /* scale text with viewport */
+    color: #222;
+    background-color: #f6f7f9;
+    line-height: 1.6;
+}
+
+/* general container layouts */
+
+.mainPageContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    gap: 2em;
+}
+
+/* white content card for applet content sections */
+.contentChunkWrapper {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    /* nice for smaller screen sizes, ex: school chromebooks */
+    max-width: 1400px;
+    padding: 2em;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    /* make sure there is no overflow */
+}
+
+
+/* top bar header */
+
+.appletHeader {
+    width: 100%;
+    background-color: rgb(224, 224, 224);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 1em 2em;
+}
+
+/* logo appearance*/
+.headerLogo {
+    position: absolute;
+    left: 1em;
+    width: min(20vw, 250px);
+    height: auto;
+    margin: 0 0.5em;
+    padding: 0.5em;
+}
+
+.appletTitleText {
+    font-size: 1.5em;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0.5em 0.5em;
+    background-color: rgb(52, 190, 177);
+    color: rgb(255, 255, 255);
+}
+
+/* input and form elements */
+.dataEntryWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+    padding: 0.75em 0;
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
+}
+
+input[type="text"],
+select {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.6em 0.8em;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: rgb(52, 190, 177);
+    box-shadow: 0 0 0 3px rgba(52, 190, 177, 0.2);
+    outline: none;
+}
+
+/* buttons */
+#controlButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 1.5em;
+}
+
+button {
+    background-color: rgb(52, 190, 177);
+    color: #fff;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 6px;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: rgb(42, 170, 157);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* allow page to appear more neatly on smaller screens */
+@media (max-width: 600px) {
+    .dataEntryWrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .contentChunkWrapper {
+        padding: 1.5em;
+        width: 95%;
+    }
+}
+
+/* padding modifiers for easy alteration */
+.pad-sm {
+    padding: 0.5em;
+}
+
+.pad-md {
+    padding: 1em;
+}
+
+.pad-lg {
+    padding: 2em;
+}
