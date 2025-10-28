@@ -13,45 +13,53 @@
 		<script src="../JS/stapplet.js"></script>
 		<script src="../JS/quant1v_single.js"></script>
 		
-		<link rel="icon" href="https://raw.githubusercontent.com/Clover9898/Clover9898.github.io/refs/heads/main/imagehosting/mmdc/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="https://raw.githubusercontent.com/nathanieldykhouse/nathanieldykhouse.github.io/refs/heads/main/imagehosting/mmdc/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="../CSS/appletMaster.css"/>
 		<link rel="stylesheet" href="../CSS/quant1v_single.css"/>
 	</head>
 	<body>
 		<header class="appletHeader">
 			<div class="headerContent">
-				<img class="headerLogo" src="https://clover9898.github.io/imagehosting/mmdc/math-medic-logo.svg" alt="Math Medic Logo"/> 
+				<img class="headerLogo" src="https://nathanieldykhouse.github.io/imagehosting/mmdc/math-medic-logo.svg" alt="Math Medic Logo"/> 
 				<h1 class="appletTitleText">One Quantitative Variable, Single Group</h1>
 			</div>
 		</header>
-		<div class="mainPageContent">
-			<div id="zoneA" class="contentChunkWrapper">
-				<div id="dataEntryZoneWrapper">
-					<div class="standardEntryWrapper">
-						<div class="dataEntryWrapper"> 
-							<label for="quantVarNameInput">Variable Name: </label> 
-							<input id="quantVarNameInput" type="text"> 
-						</div>
-						<div class="dataEntryWrapper">
-							<label for="inputTypeSelector">Input: </label> 
-							<select name="data type" id="inputTypeSelector">
-								<option value="raw">Raw Data</option>
-								<option value="meanAndSD">Mean and Standard Deviation</option>
-								<option value="fiveNumSummary">Five Number Summary</option>
-							</select>
-						</div>
-						<div id="modularDataEntryDiv">
-							<!-- holds the dynamic input type based on the selected value from inputTypeSelector --> 
-							<p>If this text does not go away after changing the input type, please contact nathaniel.dykhouse@gmail.com</p>
-						</div>
-					</div>
-					<div id="controlButtons">
-						<button id="beginAnalysisButton">Begin Analysis</button>
-						<button id="fullResetButton">Reset Everything</button> 
-					</div>
-				</div>
+		<div class="mainPageContent" id="mainPageContent">
+			<div class="contentChunkWrapper">
+			    <div class="cardHeader">
+			        <span class="cardHeaderText">Data Entry</span>
+			        <img class="cardVisibilityToggleImage" src="https://nathanieldykhouse.github.io/imagehosting/mmdc/visibilityTRUE.png" height="30px" width="auto">
+			    </div>
+			    <div class="cardContent">
+    				<div id="dataEntryZoneWrapper">
+    					<div class="standardEntryWrapper">
+    						<div class="dataEntryWrapper"> 
+    							<label for="quantVarNameInput">Variable Name: </label> 
+    							<input id="quantVarNameInput" type="text"> 
+    						</div>
+    						<div class="dataEntryWrapper">
+    							<label for="inputTypeSelector">Input: </label> 
+    							<select name="data type" id="inputTypeSelector">
+    								<option value="raw">Raw Data</option>
+    								<option value="meanAndSD">Mean and Standard Deviation</option>
+    								<option value="fiveNumSummary">Five Number Summary</option>
+    							</select>
+    						</div>
+    						<div id="modularDataEntryDiv">
+    							<!-- holds the dynamic input type based on the selected value from inputTypeSelector --> 
+    							<p>If this text does not go away after changing the input type, please contact nathaniel.dykhouse@gmail.com</p>
+    						</div>
+    					</div>
+    					<div id="controlButtons">
+    						<button id="beginAnalysisButton">Begin Analysis</button>
+    						<button id="fullResetButton">Reset Everything</button> 
+    					</div>
+    				</div>
+			    </div>
 			</div>
+			<!--
 			<div id="mainGraphZoneWrapper" class="contentChunkWrapper" style="display: none"></div>
+			-->
 		</div>
 	</body>
 </html>
