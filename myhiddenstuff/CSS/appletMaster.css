@@ -42,6 +42,30 @@ body {
     overflow-x: hidden;
 }
 
+.cardHeader{
+    background-color: #e0e0e0; /* gray background */
+    padding: 0.75em 1.5em;
+    margin: -2em -2em 1.5em -2em; /* negative margins to stretch to card edges */
+    border-radius: 12px 12px 0 0; /* rounded top corners only */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.cardHeaderText {
+    font-weight: 600;
+    color: #333;
+    font-size: clamp(1rem, 1.1vw, 1.3rem);
+    text-align: center;
+}
+
+.cardContent{
+    margin-top: 0.5em;
+}
+
 
 /* tables */
 table {
