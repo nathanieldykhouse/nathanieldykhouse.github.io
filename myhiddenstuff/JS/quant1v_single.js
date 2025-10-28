@@ -254,6 +254,18 @@ function applyInitialEventListeners(){
     
     const beginAnalysisButton = document.getElementById("beginAnalysisButton");
     beginAnalysisButton.addEventListener('click', function(){
+        const preExistingInputField = document.getElementById("mainGraphZoneCard")
+        if(!preExistingInputField){
+            STAPPLET.UI.makeNewContentCard(
+                {
+                    cardTitle: "Graphing",
+                    cardId: "mainGraphZoneCard",
+                    cardClass: "contentChunkWrapper",
+                    cardContentId: "mainGraphZoneWrapper",
+                    defaultVisibility: "visible"
+                }, document.getElementById("mainPageContent"));
+        }
+        
         if(dataTypeDropdown.value === "raw"){
             const userRawInput = document.getElementById("userDataInputField");
             if(userRawInput){
@@ -263,25 +275,6 @@ function applyInitialEventListeners(){
             analyzeInputs();
         }
     });
-    
-    // document.addEventListener('keydown', function(event){
-    //     if(event.key === 'r'){
-    //         let userIn = prompt("Enter new point radius: ");
-    //         if(STAPPLET.UTILITY.isValidInteger(userIn)){
-    //             let intNum = parseInt(userIn);
-    //             STAPPLET.SETTINGS.updateSetting("pointRadius", intNum);
-    //             const userRawInput = document.getElementById("userDataInputField");
-    //             if(userRawInput){
-    //                 analyzeInputs();
-    //             }
-    //         }
-    //     } else if(event.key === 'm'){
-    //         let userIn = prompt("[dev] Enter data set for SD: ");
-    //         const processedData = STAPPLET.UTILITY.splitRawData(userIn);
-    //         const SD = STAPPLET.DATA.findQ1(processedData);
-    //         alert("standard deviation: " + SD);
-    //     }
-    // });
 }
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -292,9 +285,9 @@ document.addEventListener('DOMContentLoaded', function(){
 //toggleable debug stuffs
 document.addEventListener('keydown', function(event){
     if(event.key === ']'){
-        // const graphZoneDiv = document.getElementById("mainGraphZoneWrapper");
-        // alert("Current display setting for mainGraphZoneWrapper is: " + graphZoneDiv.style.display);
-        // alert("The amount of child objects for mainGraphZoneWrapper is: " + graphZoneDiv.children.length);
+        const graphZoneDiv = document.getElementById("mainGraphZoneWrapper");
+        alert("Current display setting for mainGraphZoneWrapper is: " + graphZoneDiv.style.display);
+        alert("The amount of child objects for mainGraphZoneWrapper is: " + graphZoneDiv.children.length);
     } else if(event.key === '`'){
         const dataTypeDropdown = document.getElementById("inputTypeSelector");
         if(dataTypeDropdown.value == "raw"){
