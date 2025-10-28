@@ -2,7 +2,7 @@ const projectDisplays = document.getElementById("projectDisplays");
 var allSubdirs = [];
 
 function getPaths() {
-    fetch("https://api.github.com/repos/Clover9898/Clover9898.github.io/contents/projectFiles/")
+    fetch("https://api.github.com/repos/nathanieldykhouse/nathanieldykhouse.github.io/contents/projectFiles/")
         .then(response => response.json())
         .then(data => {
             allSubdirs = data;
@@ -19,7 +19,7 @@ function createNewBoxes() {
 
     for (let i = 0; i < allSubdirs.length; i++) {
         let curName = allSubdirs[i].name;
-        let projectUrl = "https://clover9898.github.io/projectFiles/" + curName;
+        let projectUrl = "https://nathanieldykhouse.github.io/projectFiles/" + curName;
 
         // Create anchor
         const link = document.createElement('a');
@@ -86,3 +86,4 @@ function createNewBoxes() {
 }
 
 getPaths();
+
