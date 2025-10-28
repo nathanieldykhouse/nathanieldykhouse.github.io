@@ -147,6 +147,58 @@ STAPPLET.UI = {
         } else{
             return newTable;
         }
+    },
+    
+    /*
+        what i want to pass:
+        card header title
+        card id (if needed)
+        card class
+        the rest can be added after
+        wrapper is the place it will be appended to, if not specified, function just
+        returns the new object
+        contentCardInfo uses format info = [
+            cardTitle:
+            cardId: 
+            cardClass:
+            cardContentId: 
+            defaultVisibility: 
+        ]
+    */
+    makeNewContentCard: function(contentCardInfo, wrapper = null){
+        //create the wrapper for cardHeader and cardContent divs
+        
+        const newCardDiv = document.createElement("div");
+        if(contentCardInfo.cardClass != null){
+            newCardDiv.classList.add(contentCardInfo.cardClass);
+        }
+        if(contentCardInfo.cardId != null){
+            newCardDiv.id = contentCardInfo.cardId;
+        }
+        
+        //card header
+        const newCardHeader = document.createElement("div");
+        newCardHeader.classList.add("cardHeader");
+        if(contentCardInfo.cardTitle != null){
+            const newHeaderText = document.createElement("span");
+            newHeaderText.textContent = contentCardInfo.cardTitle;
+            newHeaderText.classList.add("cardHeaderText");
+            newCardHeader.appendChild(newHeaderText);
+        }
+        newCardDiv.appendChild(newCardHeader);
+        
+        //card content zone
+        const newCardContent = document.createElement("div");
+        newCardContent.classList.add("cardContent");
+        if(contentCardInfo.cardContentId != null){
+            newCardContent.id = contentCardInfo.cardContentId;
+        }
+        newCardDiv.appendChild(newCardContent);
+        if(wrapper != null){
+            wrapper.appendChild(newCardDiv);
+        } else{
+            return newCardDiv;
+        }
     }
 };
 
