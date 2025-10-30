@@ -275,10 +275,13 @@ function applyInitialEventListeners(){
             analyzeInputs();
         }
     });
+    
+    
 }
 
 document.addEventListener('DOMContentLoaded', function(){
     applyInitialEventListeners();
+    STAPPLET.UI.enableVisibilityToggleIcons();
     changeInputDivType();
 });
 
