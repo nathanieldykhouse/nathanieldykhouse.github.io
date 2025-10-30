@@ -40,6 +40,36 @@ STAPPLET.UI = {
         }
     },
     
+    enableVisibilityToggleIcons: function(){
+        document.addEventListener('click', function(event){
+            
+            if(event.target.closest('.cardVisibilityToggle')){
+                //find the toggled icon, its parent wrapper, and the nearest card content chunk
+                const toggle = event.target.closest('.cardVisibilityToggle');
+                
+                if(toggle){ //make sure toggle exists
+                    const nearestWrapper = toggle.closest('.contentChunkWrapper');
+                    
+                    if(nearestWrapper){ //make sure nearestWrapper exists
+                        const cardContent = nearestWrapper.querySelector('.cardContent');
+                        
+                        if(cardContent){ //make sure cardContent exists
+                            if(toggle.src === "https://nathanieldykhouse.github.io/imagehosting/mmdc/visibilityVISIBLE.svg"){
+                               //uses display none so hidden elements don't take up DOM space
+                               cardContent.style.display = "none";
+                               toggle.src = "https://nathanieldykhouse.github.io/imagehosting/mmdc/visibilityHIDDEN.svg";
+                            } else{
+                               //return display to original value
+                               cardContent.style.display = "block";
+                               toggle.src = "https://nathanieldykhouse.github.io/imagehosting/mmdc/visibilityVISIBLE.svg";
+                            }
+                        }
+                    }
+               }
+           } 
+        });
+    },
+    
     //ui control to make a new input with an attatched label
     makeNewLabeledInput: function(wrapperElem, labelText, inputObjId, inputType, placeholderText = ""){
         const newLabel = document.createElement("label");
