@@ -1,5 +1,16 @@
 var MMAPPLETS = MMAPPLETS || { };
 
+MMAPPLETS.INFO = {
+    appletInfo: {
+        numSections: 0
+    },
+    
+    getAppletInfo: function(){
+        const sectionContentDiv = document.getElementById("sectionContent");
+        this.appletInfo.numSections = sectionContentDiv.dataset.numSections;
+    }
+}
+
 MMAPPLETS.UI = {
     addClickListeners: function(){
         document.addEventListener('click', function(event){
@@ -13,7 +24,19 @@ MMAPPLETS.UI = {
                 //get only the number related to the id
                 const strippedId = closestNavEntry.id.replace(/\D/g, '');
                 
-                alert(strippedId);
+                MMAPPLETS.UI.setDisplayedSection(Number(strippedId));
+            }
+        });
+    },
+    
+    setDisplayedSection: function(displaySection){
+        var sections = document.querySelectorAll('.sectionContainer');
+        sections.forEach(section => {
+            let sectionNum = section.id.replace(/\D/g, '');
+            if(Number(displaySection) == Number(sectionNum)){
+                section.style.display = 'block';
+            } else{
+                section.style.display = 'none';
             }
         });
     },
