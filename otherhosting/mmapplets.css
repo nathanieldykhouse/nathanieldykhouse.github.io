@@ -1,0 +1,99 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* prevent screen overflow */
+    font-family: "Avenir Next", "Avenir Next LT", "Avenir", "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(14px, 1.2vw, 18px);
+    /* scale text with viewport */
+    color: #222;
+    background-color: #f6f7f9;
+    line-height: 1.4;
+}
+
+/* PAGE HEADER WITH TITLE */
+
+.pageHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4em;
+    width: 100%;
+    background-color: #E6E7E8;
+    padding: 0 1em;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.headerImage {
+    height: 2em;
+    width: auto;
+    position: absolute;
+    left: 1em;
+}
+
+.headbarTitle {
+    font-size: clamp(1em, 1.3em, 1.5em);
+    margin: 0;
+    text-align: center;
+}
+
+
+/* MAIN PAGE CONTENT */
+
+.pageContent {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: calc(100vh - 4em);
+}
+
+.sectionContent {
+    width: 85%;
+}
+
+/* Navigation Bar */
+
+.sectionNavBar {
+    width: 15%;
+    background-color: rgb(240,240,240);
+    border-left: 1px solid gray;
+}
+
+.navBarList{
+    list-style: none;
+    position: relative;
+}
+
+.navBarItem {
+    line-height: 1;
+    font-size: clamp(0.5em, 1em, 1.5em);
+    transform: translate(-10%);
+    border-bottom: 1px solid gray;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+/* Applicable Styles */
+
+
+/* Hover Styles */
+
+.navBarItem:hover{
+    cursor: pointer;
+}
+
+/* Active Styles */
+
+.navBarItem:active{
+    box-shadow: 0 2px 6px rgba(255,255,255,0.2);
+}
+
+
+
