@@ -56,6 +56,11 @@ body {
     width: 85%;
 }
 
+/* Individual Sections */
+.sectionContainer{
+    padding: 1em;
+}
+
 /* Navigation Bar */
 
 .sectionNavBar {
@@ -94,6 +99,3 @@ body {
 .navBarItem:active{
     box-shadow: 0 2px 6px rgba(255,255,255,0.2);
 }
-
-
-
