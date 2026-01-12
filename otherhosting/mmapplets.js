@@ -1,47 +1,45 @@
 var MMAPPLETS = MMAPPLETS || { };
 
 MMAPPLETS.INFO = {
-    appletInfo: {
-        numSections: 0
-    },
     
-    getAppletInfo: function(){
-        const sectionContentDiv = document.getElementById("sectionContent");
-        this.appletInfo.numSections = sectionContentDiv.dataset.numSections;
-    }
-}
+};
 
 MMAPPLETS.UI = {
-    addClickListeners: function(){
-        document.addEventListener('click', function(event){
-            
-            //NAVIGATION BAR HANDLING
-            if(event.target.classList.contains('navBarItemText') || event.target.classList.contains('navBarItem')){
-                
-                //get closest navigation bar entry
-                const closestNavEntry = (event.target.classList.contains('navBarItemText')) ? event.target.closest('.navBarItem') : event.target;
-                
-                //get only the number related to the id
-                const strippedId = closestNavEntry.id.replace(/\D/g, '');
-                
-                MMAPPLETS.UI.setDisplayedSection(Number(strippedId));
-            }
-        });
-    },
-    
-    setDisplayedSection: function(displaySection){
-        var sections = document.querySelectorAll('.sectionContainer');
-        sections.forEach(section => {
-            let sectionNum = section.id.replace(/\D/g, '');
-            if(Number(displaySection) == Number(sectionNum)){
-                section.style.display = 'block';
+    //Changes the visibility of a given element to visible or invisible
+    toggleElementVisibility: function(elementId){
+        const elem = document.getElementById(elementId);
+        
+        //garuntee element's existence
+        if(typeof(element) != null){
+            const currentElemVisibility = elem.style.visibility;
+            if(currentElemVisibility == 'visible'){
+                //disable visibility for element
+                elem.style.visibility = 'none';
             } else{
-                section.style.display = 'none';
+                //return to default value
+                elem.style.visibility = '';
             }
-        });
+        } else{
+            console.log("ERROR: Cannot toggle visibility of nonexistent element of id " + elementId);
+        }
     },
     
-    testFunc: function(){
-        alert("it worked");
+    //Similar to toggleElementVisibility but changes display value to make the element take up no rendered DOM space
+    toggleElementDisplay: function(elementId){
+        const elem = document.getElementById(elementId);
+        
+        //garuntee element's existence
+        if(typeof(element) != null){
+            const currentElemDisplay = elem.style.display;
+            if(currentElemDisplay == ''){
+                //disable visibility for element
+                elem.style.display = 'none';
+            } else{
+                //return to default value
+                elem.style.display = '';
+            }
+        } else{
+            console.log("ERROR: Cannot toggle display of nonexistent element of id " + elementId);
+        }
     }
 };
