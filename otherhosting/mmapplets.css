@@ -52,50 +52,6 @@ body {
     min-height: calc(100vh - 4em);
 }
 
-.sectionContent {
-    width: 85%;
-}
-
-/* Individual Sections */
-.sectionContainer{
-    padding: 1em;
-}
-
-/* Navigation Bar */
-
-.sectionNavBar {
-    width: 15%;
-    background-color: rgb(240,240,240);
-    border-left: 1px solid gray;
-}
-
-.navBarList{
-    list-style: none;
-    position: relative;
-}
-
-.navBarItem {
-    line-height: 1;
-    font-size: clamp(0.5em, 1em, 1.5em);
-    transform: translate(-10%);
-    border-bottom: 1px solid gray;
-    padding-top: 0.75em;
-    padding-bottom: 0.75em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-}
-
-/* Applicable Styles */
+/* Text on Page */
 
 
-/* Hover Styles */
-
-.navBarItem:hover{
-    cursor: pointer;
-}
-
-/* Active Styles */
-
-.navBarItem:active{
-    box-shadow: 0 2px 6px rgba(255,255,255,0.2);
-}
