@@ -1,5 +1,81 @@
 
 
 #explanationText{
-    padding: 2em;
+    padding: 1.5em;
+}
+
+/* sections */
+
+.section{
+    position: relative;
+    padding: 1.5em;
+}
+
+#section1{
+    align-self: center;
+}
+
+#section2{
+    display: none;
+    flex-direction: row;
+    
+    gap: 1em;
+}
+
+#sec1{
+    gap: 1em;
+}
+
+#sec2{
+    position: relative;
+}
+
+#section2 button{
+    background-color: #3EBEB1;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    border-width: 1px;
+    border-color: gray;
+}
+
+#shotsInfoOutput1Div{
+    font-size: clamp(1.25em, 1.5em, 1.75em);
+    margin-top: 1em;
+    position: relative;
+    width: 10em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+#takeShotsButton{
+    text-align: center;
+}
+
+#takeShotsButton button{
+    color: #ffffff;
+    background-color: #3EBEB1;
+    font-size: clamp(1em, 1.05em, 1.1em);
+    padding: 0.5em;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+#lottieAnimationMISS{
+    display: none;
+}
+
+/* SECTION 2 STUFF */
+
+#fnsAndQuickAdd{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: relative;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+#fnsAndQuickAdd input{
+    width: 2em;
 }
