@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,8 +25,78 @@
             <p class="headbarTitle">Is Mrs. Gallas a Good Free Throw Shooter?</p>
         </div>
         <div class="pageContent">
-            <h3 id="explanationText">Mrs. Gallas claims she is an 80% free throw shooter. To prove her skills, she shoots 50 free throws and makes 32 shots. Is Mrs. Gallas exaggerating about her free throw skills? 
-            To test Mrs. Gallas’ claim, we will assume she really is an 80% free throw shooter and investigate what results could happen by chance alone.</h3>
+            <h3 id="explanationText">
+                Mrs. Gallas claims she is an 80% free throw shooter. To prove her skills, she shoots 50 free throws and makes 32 shots. 
+                Is Mrs. Gallas exaggerating about her free throw skills? 
+                To test Mrs. Gallas’ claim, we will assume she really is an 80% free throw shooter and investigate what results could happen by chance alone. 
+                (The simulation assumes Mrs. Gallas truly is a 80% free throw shooter.)
+            </h3>
+            <div class="section" id="section1">
+                <div class="flexRow" id="sec1">
+                    <div class="flexCol" id="sec2">
+                        <div class="lottieAnimationBox">
+                            <div id="lottieAnimationMAKE"></div>
+                            <div id="lottieAnimationMISS"></div>
+                        </div>
+                        <div id="takeShotsButton">
+                            <button id="shootButton">Shoot!</button>
+                        </div>
+                    </div>
+                    <div id="shotsInfoOutput1Div">
+                        <p id="shotsLabel">Shots:</p>
+                        <p id="shotsInfoOutputText">N/A</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section" id="section2">
+                <div id="fnsAndQuickAdd" class="flexCol">
+                    <div class="fiveNumSum">
+                        <table>
+                            <tr>
+                                <th>n</th>
+                                <th>Mean</th>
+                                <th>SD</th>
+                                <th>Min</th>
+                                <th>Q<sub>1</sub></th>
+                                <th>Med</th>
+                                <th>Q<sub>3</sub></th>
+                                <th>Max</th>
+                            </tr>
+                            <tr>
+                                <td id="nOutput"></td>
+                                <td id="meanOutput"></td>
+                                <td id="SDOutput"></td>
+                                <td id="minOutput"></td>
+                                <td id="Q1Output"></td>
+                                <td id="medOutput"></td>
+                                <td id="Q3Output"></td>
+                                <td id="maxOutput"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="quickAddDiv">
+                        <label for="quickAddInput">Quickly add <input type="text" id="quickAddInput"> simulations. <button id="quickAddSimsBtn">Add</button></label>
+                    </div>
+                    <div id="analyzeDataDiv">
+                        <label for="analyzeDataInput">Count number and percent of samples 
+                            <select id="lOrRSelDropdown">
+                                <option value="greater">greater</option>
+                                <option value="less">less</option>
+                            </select> than or equal to 
+                            <input type="text" id="analyzeDataInput">
+                            <button id="countBtn">Count</button>
+                            <button id="removeCountBtn">Hide</button>
+                        </label>
+                        <p id="outputAnalyzedCount"></p>
+                    </div>
+                </div>
+                <div id="graphAnalysisDiv" class="flexCol">
+                    <div id="graphOutput"></div>
+                    <div id="graphAnalysisEntry">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
