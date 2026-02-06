@@ -26,6 +26,7 @@
     align-self: center;
     margin-left: auto;
     margin-right: auto;
+    font-family: "Avenir Next", "Avenir Next LT", "Avenir", "Helvetica Neue", Arial, sans-serif;
 }
 
 #section2{
@@ -55,6 +56,8 @@
 
 #shotsInfoOutput1Div{
     font-size: clamp(1.25em, 1.5em, 1.75em);
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 1em;
     position: relative;
     width: 10em;
@@ -74,6 +77,8 @@
     padding: 0.5em;
     border: 2px solid gray;
     border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #lottieAnimationMISS{
