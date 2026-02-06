@@ -11,13 +11,28 @@
     padding: 1.5em;
 }
 
+#sectionContainer{
+    display: flex;
+    flex-direction: row;
+    /*background-color: gray;*/
+    position: relative;
+    width: 100%;
+    height: auto;
+    align-content: center;
+    gap: 0.5em;
+}
+
 #section1{
     align-self: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #section2{
     display: none;
-    flex-direction: row;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
     
     gap: 1em;
 }
