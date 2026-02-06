@@ -26,27 +26,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const populationHistory = [];
     
     var radi = 5;
-
-    function updateFiveNumSum(){
-        // alert("called update fns");
-        const fns = MMAPPLETS.MATH.getFiveNumSumFromList(populationHistory);
-        const nOutput = document.getElementById("nOutput");
-        const meanOutput = document.getElementById("meanOutput");
-        const SDOutput = document.getElementById("SDOutput");
-        const minOutput = document.getElementById("minOutput");
-        const Q1Output = document.getElementById("Q1Output");
-        const medOutput = document.getElementById("medOutput");
-        const Q3Output = document.getElementById("Q3Output");
-        const maxOutput = document.getElementById("maxOutput");
-        nOutput.innerText = populationHistory.length;
-        minOutput.innerText = fns.min.toFixed(2);
-        maxOutput.innerText = fns.max.toFixed(2);
-        meanOutput.innerText = fns.mean.toFixed(2);
-        SDOutput.innerText = fns.SD.toFixed(2);
-        Q1Output.innerText = fns.q1.toFixed(2);
-        medOutput.innerText = fns.med.toFixed(2);
-        Q3Output.innerText = fns.q3.toFixed(2);
-    }
     
     function createDotplotData(dataList){
         // Convert and filter
@@ -133,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const highestY = d3.max(points, d => d.y);
         
         //create and format points on graph --        
-        MMAPPLETS.GRAPHS.drawCircles(svg, points, x, y, {radius: radi, stroke: "none"});
+        MMAPPLETS.GRAPHS.drawCircles(svg, points, x, y, {radius: radi, stroke: "none", color: "rgb(62, 190, 180)"});
         
         //set axes
         const xAxis = MMAPPLETS.GRAPHS.makeXAxis(x, {
@@ -148,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     
     function updateOutputs(){
-        updateFiveNumSum();
         displayPopulationGraph();
     }
     
@@ -172,8 +150,8 @@ document.addEventListener("DOMContentLoaded", function(){
             .attr("y", 0)
             .attr("width", width)
             .attr("height", height)
-            .attr("fill", "rgba(62, 190, 177, 0.25")
-            .attr("stroke", "rgba(62, 190, 180, 0.5")
+            .attr("fill", "rgba(255, 0, 0, 0.25)")
+            .attr("stroke", "rgba(255, 0, 0, 0.5)")
             .attr("stroke-width", 1);
     }
     
@@ -299,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function(){
         if(shotHistory.length < 50){
             attemptShot();
         } else{
-            MMAPPLETS.UI.toggleElementDisplay('section1');
+            // MMAPPLETS.UI.toggleElementDisplay('section1');
             MMAPPLETS.UI.toggleElementDisplay('section2', 'flex');
             updateOutputs();
         }
