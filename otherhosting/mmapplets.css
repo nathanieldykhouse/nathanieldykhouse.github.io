@@ -86,3 +86,13 @@ td:nth-child(even){
     display: flex;
     flex-direction: row;
 }
+
+@font-face{
+    font-family: 'Avenir';
+    src: url('https://raw.githubusercontent.com/nathanieldykhouse/nathanieldykhouse.github.io/refs/heads/main/fonts/Avenir Regular.ttf') format('truetype'),
+    url('https://raw.githubusercontent.com/nathanieldykhouse/nathanieldykhouse.github.io/refs/heads/main/fonts/Avenir Regular.woff') format('woff'),
+    url('https://raw.githubusercontent.com/nathanieldykhouse/nathanieldykhouse.github.io/refs/heads/main/fonts/Avenir Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
