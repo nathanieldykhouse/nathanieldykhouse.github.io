@@ -282,4 +282,20 @@ document.addEventListener("DOMContentLoaded", function(){
             updateOutputs();
         }
     });
+    
+    window.addEventListener('resize', function(){
+        const width = window.innerWidth;
+        
+        if(width <= 600){
+            MMAPPLETS.SETTINGS.graphSettings.width = 400;
+            MMAPPLETS.SETTINGS.graphSettings.margins = {top: 40*(2/3), right: 20*(2/3), bottom: 60*(2/3), left: 60*(2/3)};
+        }
+    });
+    
+    document.addEventListener('keydown', (e) =>{
+        if(e.key == "u"){
+            alert(window.innerWidth);
+            alert(MMAPPLETS.SETTINGS.graphSettings.width);
+        }
+    })
 });
