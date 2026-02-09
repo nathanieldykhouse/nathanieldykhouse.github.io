@@ -287,8 +287,9 @@ document.addEventListener("DOMContentLoaded", function(){
         const width = window.innerWidth;
         
         if(width <= 600){
-            MMAPPLETS.SETTINGS.graphSettings.width = 400;
-            MMAPPLETS.SETTINGS.graphSettings.margins = {top: 40*(2/3), right: 20*(2/3), bottom: 60*(2/3), left: 60*(2/3)};
+            MMAPPLETS.SETTINGS.graphSettings.width = 500;
+            MMAPPLETS.SETTINGS.graphSettings.margins = {top: 40*(5/6), right: 20*(5/6), bottom: 60*(5/6), left: 60*(5/6)};
+            displayPopulationGraph();
         }
     });
     
