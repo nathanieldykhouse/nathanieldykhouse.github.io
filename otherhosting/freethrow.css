@@ -99,3 +99,20 @@
 #fnsAndQuickAdd input{
     width: 2em;
 }
+
+
+/* MOBILE STYLING */
+@media (max-width: 600px){
+    #sectionContainer{
+        flex-direction: column;
+    }
+    
+    #section2{
+        margin-left: default;
+        margin-right: default;
+    }
+    
+    svg{
+        max-width: 400;
+    }
+}
