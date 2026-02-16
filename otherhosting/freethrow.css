@@ -103,13 +103,18 @@
 
 /* MOBILE STYLING */
 @media (max-width: 600px){
+    html, body{
+        overflow-x: hidden;
+    }
+    
     #sectionContainer{
         flex-direction: column;
     }
     
     #section2{
-        margin-left: default;
-        margin-right: default;
+        display: flex;          /* if it should be visible */
+        margin-left: 0;
+        margin-right: 0;
     }
     
     .headerImage{
@@ -123,9 +128,25 @@
         display: flex;
         flex-direction: column;
         gap: 0.75em;
-    }
-        
+    }    
+    
     svg{
-        max-width: 400;
+        max-width: 100%;        /* or 400px, but with unit */
+        height: auto;
+    }
+    
+    #graphOutput{
+        display: flex;
+        flex-direction: column; /* maybe needed? */
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+    
+    /* Ensure fixed-width elements don't overflow */
+    #shotsInfoOutput1Div{
+        width: 100%;
+        max-width: 10em;
     }
 }
