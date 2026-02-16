@@ -287,16 +287,12 @@ document.addEventListener("DOMContentLoaded", function(){
         const width = window.innerWidth;
         
         if(width <= 600){
-            MMAPPLETS.SETTINGS.graphSettings.width = 500;
-            MMAPPLETS.SETTINGS.graphSettings.margins = {top: 40*(5/6), right: 20*(5/6), bottom: 60*(5/6), left: 60*(5/6)};
+            smallerRatio = width/500;
+            
+            MMAPPLETS.SETTINGS.graphSettings.width = 500*smallerRatio;
+            MMAPPLETS.SETTINGS.graphSettings.smallRatioEnabled = true;
+            MMAPPLETS.SETTINGS.graphSettings.margins = {top: 40, right: 100, bottom: 60, left: 0};
             displayPopulationGraph();
         }
     });
-    
-    document.addEventListener('keydown', (e) =>{
-        if(e.key == "u"){
-            alert(window.innerWidth);
-            alert(MMAPPLETS.SETTINGS.graphSettings.width);
-        }
-    })
 });
