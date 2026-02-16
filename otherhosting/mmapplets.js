@@ -9,7 +9,8 @@ MMAPPLETS.SETTINGS = {
     graphSettings: {
         height: 700,
         width: 600,
-        margins: {top: 40, right: 20, bottom: 60, left: 60}
+        margins: {top: 40, right: 20, bottom: 60, left: 60},
+        smallRatioEnabled: false
         
     }
 };
@@ -179,7 +180,9 @@ MMAPPLETS.GRAPHS = {
         return d3.select(graphElem)
             .append("svg")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+            .style("width", width + "px")
+            .style ("height", height + "px");
     },
     
     makeScale: function(type, domain, range, options = {}){
@@ -229,9 +232,13 @@ MMAPPLETS.GRAPHS = {
     },
     
     addTextToAxis: function(svg, text, axisType, options = {}){
-        const width = +svg.attr("width");
+        let width = +svg.attr("width");
         const height = +svg.attr("height");
         const margin = options.margin || MMAPPLETS.SETTINGS.graphSettings.margins;
+        
+        if(MMAPPLETS.SETTINGS.graphSettings.smallRatioEnabled){
+            width = width - margin.left - margin.right;
+        }
         
         const label = svg.append("text")
             .attr("class", `${axisType}-axis-label`)
@@ -239,7 +246,7 @@ MMAPPLETS.GRAPHS = {
             .text(text);
         
         if(axisType === "x"){
-            label.attr("x", width / 2)
+            label.attr("x", width / 2 )
                 .attr("y", height - margin.bottom / (options.offset || 5));
         } else if (axisType === 'y') {
             label.attr("transform", "rotate(-90)")
