@@ -112,7 +112,6 @@
     }
     
     #section2{
-        display: flex;          /* if it should be visible */
         margin-left: 0;
         margin-right: 0;
     }
@@ -150,3 +149,4 @@
         max-width: 10em;
     }
 }
+
