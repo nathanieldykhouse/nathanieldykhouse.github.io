@@ -30,7 +30,7 @@
 }
 
 #section2{
-    display: none;
+    visibility: hidden;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
@@ -97,7 +97,7 @@
 }
 
 #fnsAndQuickAdd input{
-    width: 2em;
+    width: 2.5em;
 }
 
 
@@ -149,4 +149,3 @@
         max-width: 10em;
     }
 }
-
