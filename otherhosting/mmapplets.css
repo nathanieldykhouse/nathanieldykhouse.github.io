@@ -47,7 +47,12 @@ body {
     text-align: center;
 }
 
+.headbarTitle a{
+    
+    color: black;
+    text-decoration: none;
 
+}
 /* MAIN PAGE CONTENT */
 
 .pageContent {
