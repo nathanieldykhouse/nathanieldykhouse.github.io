@@ -16,24 +16,25 @@ MMAPPLETS.SETTINGS = {
 
 MMAPPLETS.UI = {
   //Changes the visibility of a given element to visible or invisible
-  toggleElementVisibility: function (elementId) {
+  toggleElementVisibility: function (elementId, newVal = -1) {
     const elem = document.getElementById(elementId);
 
     //garuntee element's existence
     if (typeof elem != null) {
-      const currentElemVisibility = elem.style.visibility;
-      if (currentElemVisibility == "visible") {
-        //disable visibility for element
-        elem.style.visibility = "hidden";
-      } else {
-        //return to default value
-        elem.style.visibility = "visible";
-      }
+        if(newVal != -1){
+            elem.style.visibility = newVal;
+            return;
+        }
+        const currentElemVisibility = elem.style.visibility;
+        if (currentElemVisibility == "visible") {
+            //disable visibility for element
+            elem.style.visibility = "hidden";
+        } else {
+            //return to default value
+            elem.style.visibility = "visible";
+        }
     } else {
-      console.log(
-        "ERROR: Cannot toggle visibility of nonexistent element of id " +
-          elementId,
-      );
+        console.log("ERROR: Cannot toggle visibility of nonexistent element of id " + elementId);
     }
   },
 
