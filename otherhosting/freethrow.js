@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
     path: "MISS.json",
   });
 
+    let primedForReset = false;
+    let mobileFlagged = false;
+
   const shotsInfoOutput = document.getElementById("shotsInfoOutputText");
   const shotHistory = [];
 
@@ -61,8 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function calculateOptimalRadius(maxY, availableHeight) {
     const MIN_RADIUS = 0.5;
-    const MAX_RADIUS = 5;
-    const DEFAULT_RADIUS = 5;
+    const MAX_RADIUS = (mobileFlagged) ? 3 : 5;
+    const DEFAULT_RADIUS = (mobileFlagged) ? 3 : 5;
 
     if (maxY <= 1) return DEFAULT_RADIUS;
 
@@ -80,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const width = window.innerWidth;
     
     if (width <= 600) {
+        mobileFlagged = true;
+        
         smallerRatio = width / 500;
         
         MMAPPLETS.SETTINGS.graphSettings.width = 500 * smallerRatio;
@@ -90,6 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
             bottom: 60,
             left: 0,
         };
+    } else{
+        mobileFlagged = false;
     }
   }
 
@@ -249,6 +256,34 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Input must be a numeric value between 0-1");
     }
   }
+  
+  function resetApplet(){
+      primedForReset = false;
+    shotHistory.length = 0;
+    populationHistory.length = 0;
+    radi = 5;
+
+    // Reset UI elements
+    document.getElementById("shootButton").innerText = "Shoot";
+    document.getElementById("shotsInfoOutputText").innerText = "0/0 (0%)";
+    document.getElementById("outputAnalyzedCount").innerText = "";
+    document.getElementById("analyzeDataInput").value = null;
+    document.getElementById("lOrRSelDropdown").value = "greater";
+    document.getElementById("quickAddInput").value = null;
+
+    // Hide the graph section
+    MMAPPLETS.UI.toggleElementVisibility("section2", "hidden");
+
+    // Clear the graph container
+    const graphElem = document.getElementById("graphOutput");
+    graphElem.replaceChildren();
+
+    // Reset Lottie animations to first frame and hide both containers
+    lottieMISSAnimation.goToAndStop(0, true);
+    lottieMAKEAnimation.goToAndStop(0, true);
+    lottieMissAnimContainer.style.display = "none";
+    lottieMakeAnimContainer.style.display = "block";
+  }
 
   //plays the animation for the freethrow, 1 for make, 0 for miss (effectively boolean)
   function playFreethrowAnimation(madeThrow) {
@@ -272,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const numShotsMade = shotHistory.reduce((accum, cur) => accum + cur, 0);
     const percentage = Number((numShotsMade / numShotsTaken).toFixed(2));
 
-    shotsInfoOutput.innerText = `${numShotsMade}/${numShotsTaken} (${percentage}%)`;
+    shotsInfoOutput.innerText = `${numShotsMade}/${numShotsTaken} (${(percentage*100).toFixed(0)}%)`;
 
     if (shotHistory.length == 50) {
       populationHistory.push(percentage);
@@ -329,10 +364,14 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("shootButton").addEventListener("click", function () {
     if (shotHistory.length < 50) {
       attemptShot();
-    } else {
+    } else if(!primedForReset){
       // MMAPPLETS.UI.toggleElementDisplay('section1');
-      MMAPPLETS.UI.toggleElementDisplay("section2", "flex");
+      MMAPPLETS.UI.toggleElementVisibility("section2", "visible");
+      document.getElementById("shootButton").innerText = "Start Over";
+      primedForReset = true;
       updateOutputs();
+    } else if(primedForReset){
+        resetApplet();
     }
   });
 
@@ -341,10 +380,10 @@ document.addEventListener("DOMContentLoaded", function () {
     displayPopulationGraph();
   });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key == "u") {
-      alert(window.innerWidth);
-      alert(MMAPPLETS.SETTINGS.graphSettings.width);
-    }
-  });
+//   document.addEventListener("keydown", (e) => {
+//     if (e.key == "u") {
+//       alert(window.innerWidth);
+//       alert(MMAPPLETS.SETTINGS.graphSettings.width);
+//     }
+//   });
 });
