@@ -64,17 +64,14 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        // alert("len of pairs array: " + pairsArray.length);
-
         return pairsArray;
     }
 
     function calculateOptimalRadius(maxY, availableHeight) {
         const MIN_RADIUS = 0.5;
         const MAX_RADIUS = (mobileFlagged) ? 3 : 5;
-        const DEFAULT_RADIUS = (mobileFlagged) ? 3 : 5;
 
-        if(maxY <= 1) return DEFAULT_RADIUS;
+        if(maxY <= 1) return MAX_RADIUS;
 
         // Space needed per dot: diameter (2r) + vertical gap (0.5r) = 2.5r
         const SPACE_PER_DOT_MULTIPLIER = 2.2;
@@ -92,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(width <= 600) {
             mobileFlagged = true;
 
-            smallerRatio = width / 500;
+            let smallerRatio = width / 500;
 
             MMAPPLETS.SETTINGS.graphSettings.width = 500 * smallerRatio;
             MMAPPLETS.SETTINGS.graphSettings.smallRatioEnabled = true;
@@ -105,10 +102,6 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             mobileFlagged = false;
         }
-    }
-
-    function addInteractabilityToGraph(svg) {
-
     }
 
     function displayPopulationGraph() {
@@ -130,12 +123,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const availableHeight = height - margin.bottom;
 
         radi = calculateOptimalRadius(maxY, availableHeight * 0.8);
-
-        // Simple scaling based on max stack height
-        const pointDiameter = radi * 2;
-        const verticalGap = radi * 0.5;
-        const contentHeight = Math.min(350, maxY * (pointDiameter + verticalGap));
-        // const height = Math.max(150, contentHeight + margin.top + margin.bottom);
 
         const svg = MMAPPLETS.GRAPHS.makeSVG(graphElem, height, width);
         svg.attr("id", "mainOutputGraphSVG");
@@ -160,15 +147,12 @@ document.addEventListener("DOMContentLoaded", function() {
             ],
         );
 
-        const highestY = d3.max(points, (d) => d.y);
-
-        //create and format points on graph --
+        //create and format points on graph
         MMAPPLETS.GRAPHS.drawCircles(svg, points, x, y, {
             radius: radi,
             stroke: "none",
             color: "rgb(62, 190, 180)",
         });
-        addInteractabilityToGraph(svg);
 
         //set axes
         const xAxis = MMAPPLETS.GRAPHS.makeXAxis(
@@ -185,7 +169,6 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .on('drag', (e) => {
                 clickLocations.last = e.x;
-                // updateSelectionFromDrag();
             })
             .on('end', (e) => {
                 clickLocations.last = e.x;
@@ -250,31 +233,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .attr("stroke-width", 1);
     }
 
-    function displaySelectedGraphRegionFromClickLocations() {
-        const pixelStart = clickLocations.first;
-        const pixelEnd = clickLocations.last;
-
-        // If no dragging happened, do nothing
-        if(pixelStart === 0 && pixelEnd === 0) return;
-
-        const svg = d3.select("#mainOutputGraphSVG");
-        const width = parseFloat(svg.attr("width"));
-        const margins = MMAPPLETS.SETTINGS.graphSettings.margins;
-
-        // Create a scale that maps pixel coordinates (within the plot area)
-        const pixelToNorm = d3.scaleLinear()
-            .domain([margins.left, width - margins.right])
-            .range([0, 1]);
-
-        // Convert and clamp to [0,1]
-        let startNorm = pixelToNorm(pixelStart);
-        let endNorm = pixelToNorm(pixelEnd);
-        startNorm = Math.max(0, Math.min(1, startNorm));
-        endNorm = Math.max(0, Math.min(1, endNorm));
-
-        displaySelectedGraphRegion(startNorm, endNorm);
-    }
-
     function hideGraphCount() {
         const svg = d3.select(document.getElementById("mainOutputGraphSVG"));
         svg.selectAll("rect").remove();
@@ -327,7 +285,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function resetApplet() {
         primedForReset = false;
         shotHistory.length = 0;
-        populationHistory.length = 0;
         radi = 5;
 
         // Reset UI elements
@@ -378,7 +335,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if(shotHistory.length == 50) {
             populationHistory.push(percentage);
-            document.getElementById("shootButton").innerText = "Continue";
         }
     }
 
@@ -398,7 +354,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .getElementById("quickAddSimsBtn")
         .addEventListener("click", function() {
             const simsAmt = parseInt(document.getElementById("quickAddInput").value);
-            // alert('quickadding');
             for(let simIter = 0; simIter < simsAmt; simIter++) {
                 const tempSH = [];
                 for(let st = 0; st < 50; st++) {
@@ -413,7 +368,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 const numShotsMade = tempSH.reduce((accum, cur) => accum + cur, 0);
                 const percentage = Number((numShotsMade / numShotsTaken).toFixed(2));
                 populationHistory.push(percentage);
-                // alert('pushing ' + percentage + ' to pophist');
             }
             updateOutputs();
         });
@@ -429,10 +383,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
     document.getElementById("shootButton").addEventListener("click", function() {
-        if(shotHistory.length < 50) {
+        if(shotHistory.length < 49) {
             attemptShot();
         } else if(!primedForReset) {
-            // MMAPPLETS.UI.toggleElementDisplay('section1');
+            attemptShot();
             MMAPPLETS.UI.toggleElementVisibility("section2", "visible");
             document.getElementById("shootButton").innerText = "Start Over";
             primedForReset = true;
@@ -446,11 +400,4 @@ document.addEventListener("DOMContentLoaded", function() {
         scaleGraphToScreen();
         displayPopulationGraph();
     });
-
-    //   document.addEventListener("keydown", (e) => {
-    //     if (e.key == "u") {
-    //       alert(window.innerWidth);
-    //       alert(MMAPPLETS.SETTINGS.graphSettings.width);
-    //     }
-    //   });
 });
