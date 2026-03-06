@@ -299,8 +299,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // MMAPPLETS.UI.toggleElementVisibility("section2", "hidden");
 
         // Clear the graph container
-        const graphElem = document.getElementById("graphOutput");
-        graphElem.replaceChildren();
+        // const graphElem = document.getElementById("graphOutput");
+        // graphElem.replaceChildren();
 
         // Reset Lottie animations to first frame and hide both containers
         lottieMISSAnimation.goToAndStop(0, true);
