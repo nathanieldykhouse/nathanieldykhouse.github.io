@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("quickAddInput").value = null;
 
         // Hide the graph section
-        MMAPPLETS.UI.toggleElementVisibility("section2", "hidden");
+        // MMAPPLETS.UI.toggleElementVisibility("section2", "hidden");
 
         // Clear the graph container
         const graphElem = document.getElementById("graphOutput");
