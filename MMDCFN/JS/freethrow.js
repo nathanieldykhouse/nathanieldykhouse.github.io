@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
         renderer: "svg",
         loop: false,
         autoplay: false,
-        path: "..\ASSETS\MAKE.json",
+        path: "../ASSETS/MAKE.json",
     });
 
     const lottieMISSAnimation = lottie.loadAnimation({
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         renderer: "svg",
         loop: false,
         autoplay: false,
-        path: "..\ASSETS\MISS.json",
+        path: "../ASSETS/MISS.json",
     });
 
     let primedForReset = false; //reset button active
