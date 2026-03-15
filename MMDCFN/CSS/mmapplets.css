@@ -94,9 +94,9 @@ td:nth-child(even){
 
 @font-face{
     font-family: 'Avenir';
-    src: url("..\ASSETS\Avenir Regular.ttf") format('truetype'),
-    url("..\ASSETS\Avenir Regular.woff") format('woff'),
-    url("..\ASSETS\Avenir Regular.woff2") format('woff2');
+    src: url("../ASSETS/Avenir Regular.ttf") format('truetype'),
+    url("../ASSETS/Avenir Regular.woff") format('woff'),
+    url("../ASSETS/Avenir Regular.woff2") format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
