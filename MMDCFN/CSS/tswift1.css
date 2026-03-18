@@ -29,11 +29,6 @@
     background-color: #ffffff;
 }
 
-/* #audienceContainer img{
-    height: 95%;
-    width: 9.8%;
-} */
-
 .graphsContainer{
     display: flex;
     flex-direction: column;
@@ -53,15 +48,6 @@
     height: auto;
 }
 
-
-/* .buttonHolder button{
-    position: relative;
-    padding: 0.5em;
-    background-color: white;
-    width: auto;
-    height: auto;
-    border: 0.5px solid black;
-} */
 .audienceRow{
     display:flex;
     flex-direction:row;
@@ -83,7 +69,6 @@
 }
 
 .trueAudienceMemberValue{
-    /* display: none; */
     position: absolute;
     top:  50%;
     left: 50%;
@@ -97,8 +82,66 @@
     padding: 0.5em;
     border: 2px solid gray;
     border-radius: 10px;
+    width: auto;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
+}
+
+#showTrueValBtn{
+    color: #ffffff;
+    background-color: #90b4b1;
+    font-size: clamp(0.75em, 0.85em, 0.95em);
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0.5em;
+    width: auto;
+    height: auto;
+}
+
+#trueMeanInfo{
+    position: relative;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+#showTrueBtnContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    width: auto;
+    height: 2em;
+    padding-left: 1em;
+}
+
+.trueValues{
+    display: none;
+}
+
+#quickAddContainer{
+    display: none;
+    flex-direction: row;
+    gap: 0.5em;
+    margin: auto;
+    justify-content: center;
+    height: auto;
+    width: auto;
+}
+
+#quickAddContainer *{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#quickAddButton{
+    color: #ffffff;
+    background-color: #3EBEB1;
+    font-size: clamp(0.75em, 0.85em, 0.95em);
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0.3em;
+    width: auto;
+    height: auto;
 }
 
 /* MOBILE STYLING */
