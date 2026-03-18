@@ -45,7 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let height = window.innerHeight;
         let width = window.innerWidth;
         // alert(width);
-        let availableWidth = width * (1 - (0.40 + 0.05));
+        
+        let availableWidth = (width <= 600) ? width * (1  - (0.05)) : width * (1 - (0.40 + 0.05));
         let availableHeight = height * (1 - (0.66 + 0.03));
         MMAPPLETS.SETTINGS.graphSettings.height = availableHeight;
         MMAPPLETS.SETTINGS.graphSettings.width = availableWidth;
