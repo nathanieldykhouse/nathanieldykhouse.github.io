@@ -1,0 +1,144 @@
+#explanationText{
+    padding: 0.5em 1.5em 0.5em 1.5em;
+}
+
+
+.sectionContainer{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-self: center;
+    width: 95%;
+    height: 95%;
+}
+
+#simulationContainer{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 70%;
+    position: relative;
+    min-width: 35%;
+    min-height: 55%;
+}
+
+#audienceContainer{
+    margin-top: 0.5em;
+    min-width: 5em;
+    min-height: 1em;
+    background-color: #ffffff;
+}
+
+/* #audienceContainer img{
+    height: 95%;
+    width: 9.8%;
+} */
+
+.graphsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: auto;
+}
+
+.graphContainer{
+    min-width: 4em;
+    min-height: 6em;
+}
+
+
+.buttonHolder{
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+}
+
+
+/* .buttonHolder button{
+    position: relative;
+    padding: 0.5em;
+    background-color: white;
+    width: auto;
+    height: auto;
+    border: 0.5px solid black;
+} */
+.audienceRow{
+    display:flex;
+    flex-direction:row;
+    gap: 0.2em;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+}
+
+.audienceMemberImg{
+    position: relative;
+    height: 95%;
+    width: 9.8%;
+}
+
+.audienceMemberImg img{
+    max-width: 100%;
+    height: auto;
+}
+
+.trueAudienceMemberValue{
+    /* display: none; */
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+}
+
+.buttonHolder button{
+    color: #ffffff;
+    background-color: #3EBEB1;
+    font-size: clamp(0.75em, 0.85em, 0.95em);
+    padding: 0.5em;
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* MOBILE STYLING */
+@media (max-width: 600px){
+    html, body{
+        overflow-x: hidden;
+    }
+    
+    .headerImage{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 0.25em;
+    }
+    
+    .pageHeader{
+        display: flex;
+        flex-direction: column;
+        gap: 0.75em;
+    }    
+    
+    svg{
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .sectionContainer{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        align-self: center;
+        width: 95%;
+    }
+    
+    #graphOutput{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>How much do fans love Taylor Swift? (Part 1)</title>
+        <link rel="icon" href="../ASSETS/favicon.ico" type="image/x-icon"/>
+        
+        <!-- External Libraries for Graphing and Lottie Animation-->
+        
+        <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.13.0/build/player/lottie.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        
+        <!-- Math Medic JS -->
+        <script src="../JS/mmapplets.js"></script>
+        <script src="../JS/tswift1.js"></script>
+        
+        <link rel="stylesheet" href="../CSS/mmapplets.css">
+        <link rel="stylesheet" href="../CSS/tswift1.css">
+    </head>
+    <body>
+        <div class="pageHeader">
+            <img class="headerImage" src="../ASSETS/math-medic-logo.svg" alt="Math Medic Logo">
+            <p class="headbarTitle"><a href="https://portal.mathmedic.com/lesson-plans/course/AP-Statistics/unit/4/day/2" target="_blank">How much do fans love Taylor Swift? (Part 1)</a></p>
+        </div>
+        <div class="pageContent">
+            <h3 id="explanationText">
+                Taylor Swift wants to find out how much fans enjoyed the Eras Tour shows. She will ask fans, “From 1 to 100, where 100 is the most, how much did you enjoy the concert?” 
+                The V.I.P. section she wants to survey has 50 seats (5 rows x 10 columns). The stage runs along the northern edge of the venue (where Taylor is pictured). 
+                She wants to take a sample of 10 fans.
+            </h3>
+            <div class="sectionContainer">
+                <div id="simulationContainer">
+                    <div class="buttonHolder">
+                        <button id="doSimType1btn">Method 1: SRS</button>
+                        <button id="doSimType2btn">Method 2:  Stratify by Rows</button>
+                        <button id="doSimType3btn">Method 3: Stratify by Columns</button>
+                    </div>
+                    <div id="audienceContainer">
+                        <!-- TEMP FOR NATHANIEL's DEBUGGING-->
+                        <div class="audienceRow">
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID1"><p class="trueAudienceMemberValue">92</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID2"><p class="trueAudienceMemberValue">89</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID3"><p class="trueAudienceMemberValue">90</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID4"><p class="trueAudienceMemberValue">88</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID5"><p class="trueAudienceMemberValue">95</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID6"><p class="trueAudienceMemberValue">100</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID7"><p class="trueAudienceMemberValue">98</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID8"><p class="trueAudienceMemberValue">93</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID9"><p class="trueAudienceMemberValue">95</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID10"><p class="trueAudienceMemberValue">84</p></div>
+                        </div>
+
+                        <div class="audienceRow">
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID11"><p class="trueAudienceMemberValue">82</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID12"><p class="trueAudienceMemberValue">86</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID13"><p class="trueAudienceMemberValue">90</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID14"><p class="trueAudienceMemberValue">88</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID15"><p class="trueAudienceMemberValue">85</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID16"><p class="trueAudienceMemberValue">91</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID17"><p class="trueAudienceMemberValue">90</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID18"><p class="trueAudienceMemberValue">89</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID19"><p class="trueAudienceMemberValue">85</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID20"><p class="trueAudienceMemberValue">83</p></div>
+                        </div>
+
+                        <div class="audienceRow">
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID21"><p class="trueAudienceMemberValue">80</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID22"><p class="trueAudienceMemberValue">74</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID23"><p class="trueAudienceMemberValue">80</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID24"><p class="trueAudienceMemberValue">67</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID25"><p class="trueAudienceMemberValue">81</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID26"><p class="trueAudienceMemberValue">82</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID27"><p class="trueAudienceMemberValue">76</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID28"><p class="trueAudienceMemberValue">77</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID29"><p class="trueAudienceMemberValue">74</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID30"><p class="trueAudienceMemberValue">65</p></div>
+                        </div>
+
+                        <div class="audienceRow">
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID31"><p class="trueAudienceMemberValue">72</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID32"><p class="trueAudienceMemberValue">68</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID33"><p class="trueAudienceMemberValue">74</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID34"><p class="trueAudienceMemberValue">73</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID35"><p class="trueAudienceMemberValue">70</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID36"><p class="trueAudienceMemberValue">69</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID37"><p class="trueAudienceMemberValue">72</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID38"><p class="trueAudienceMemberValue">70</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID39"><p class="trueAudienceMemberValue">68</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID40"><p class="trueAudienceMemberValue">67</p></div>
+                        </div>
+
+                        <div class="audienceRow">
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID41"><p class="trueAudienceMemberValue">69</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID42"><p class="trueAudienceMemberValue">67</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID43"><p class="trueAudienceMemberValue">68</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID44"><p class="trueAudienceMemberValue">68</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID45"><p class="trueAudienceMemberValue">64</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID46"><p class="trueAudienceMemberValue">66</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID47"><p class="trueAudienceMemberValue">63</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID48"><p class="trueAudienceMemberValue">63</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID49"><p class="trueAudienceMemberValue">70</p></div>
+                            <div class="audienceMemberImg"><img src="../ASSETS/fanDefaultTSWIFT.png" id="fanID50"><p class="trueAudienceMemberValue">68</p></div>
+                        </div>
+                    </div>
+                    <p id="populationEnjoymentOutput">Average enjoyment for the population: </p>
+                </div>
+                <div class="analysisDiv">
+                    <div class="graphsContainer"> 
+                        <div class="graphContainer" id="graphOutput1"></div>
+                        <div class="graphContainer" id="graphOutput2"></div>
+                        <div class="graphContainer" id="graphOutput3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
