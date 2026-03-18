@@ -154,7 +154,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let points = createDotplotData(origData);
 
-        const graphName = "Average Enjoyment";
+        let graphName = "";
+        if(methodNum == 1){
+            graphName = "Average Enjoyment (SRS)"
+        } else if(methodNum == 2){
+            graphName = "Average Enjoyment (Stratified by Rows)"
+        } else if(methodNum == 3){
+            graphName = "Average Enjoyment (Stratified by Columns)";
+        }
 
         const maxY = d3.max(points, (d) => d.y) || 1;
 
