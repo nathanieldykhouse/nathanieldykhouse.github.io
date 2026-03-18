@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function sizeGraphForDevice(){
         if(window.innerWidth <= 600){
             
-            MMAPPLETS.SETTINGS.graphSettings.height = window.innerWidth * 0.80;
+            MMAPPLETS.SETTINGS.graphSettings.height = window.innerWidth * 0.95;
             MMAPPLETS.SETTINGS.graphSettings.width = MMAPPLETS.SETTINGS.graphSettings.height;
         } else{
             MMAPPLETS.SETTINGS.graphSettings.height = window.innerHeight * 0.68;
