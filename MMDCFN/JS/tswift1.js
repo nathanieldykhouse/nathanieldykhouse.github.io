@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const trueMean = 78.38;
     let radi = 5;
     let mobileFlagged = false;
+    let showTrueValues = false;
     
     function createDotplotData(dataList) {
         // Convert and filter
@@ -48,9 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let availableHeight = height * (1 - (0.66 + 0.03));
         MMAPPLETS.SETTINGS.graphSettings.height = availableHeight;
         MMAPPLETS.SETTINGS.graphSettings.width = availableWidth;
-        console.log("sizesettings:\n");
-        console.log(availableHeight);
-        console.log(availableWidth);
     }
 
     //calculates a radius for dots on the graph that appears neatly within the svg window
@@ -68,6 +66,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Clamp between min and max
         return Math.max(MIN_RADIUS, Math.min(MAX_RADIUS, idealRadius));
+    }
+
+    function calculateHorizontalRadius(points, xScale) {
+        if (points.length <= 1) return Infinity;
+
+        const uniqueX = [...new Set(points.map(d => d.x))].sort((a, b) => a - b);
+
+        if (uniqueX.length <= 1) return Infinity;
+
+        let minPixelDist = Infinity;
+
+        for (let i = 1; i < uniqueX.length; i++) {
+            const dist = Math.abs(xScale(uniqueX[i]) - xScale(uniqueX[i - 1]));
+            if (dist < minPixelDist) {
+                minPixelDist = dist;
+            }
+        }
+
+        const SPACE_MULTIPLIER = 2.2;
+
+        return minPixelDist / SPACE_MULTIPLIER;
     }
 
     function displayEntries(entries){
@@ -99,7 +118,30 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        return MMAPPLETS.MATH.findMinAndMaxVals(allDataPool);
+        if(allDataPool.length != 0){
+            return MMAPPLETS.MATH.findMinAndMaxVals(allDataPool);
+        } else {
+            return [77.5, 82.5]
+        }
+    }
+
+    function activateShowTrueButton(){
+        const showTrueButton = document.getElementById("showTrueValBtn");
+        showTrueButton.style.backgroundColor = "#3EBEB1";
+        showTrueButton.addEventListener('click', () => {
+            const selectedElems = document.querySelectorAll(".trueValues");
+            selectedElems.forEach(element => { 
+                element.style.display = "block";
+            });
+            showTrueValues = true;
+    
+            document.getElementById("quickAddContainer").style.display = "flex";
+
+            updateGraph(1);
+            updateGraph(2);
+            updateGraph(3);
+        });
+
     }
 
     function updateGraph(methodNum){
@@ -115,7 +157,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const maxY = d3.max(points, (d) => d.y) || 1;
 
-        const xDom = findDomainAllData();
+        let xDom = findDomainAllData();
+        
+        if(xDom[0] == xDom[1]){
+            if(xDom[0] != undefined){
+                xDom = [xDom[0] - 3, xDom[0] + 3];
+            } else{
+                xDom = [78, 82]
+            }
+        }
+
 
         //get width, height, and margin info
         const height = window.innerHeight * (1 - (0.66 + 0.125));
@@ -124,8 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const availableHeight = height - margin.bottom;
 
-        radi = calculateOptimalRadius(maxY, availableHeight * 0.8);
-
+        
         const svg = MMAPPLETS.GRAPHS.makeSVG(graphElem, height, width);
 
         //scale x and y axes
@@ -138,6 +188,11 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         );
 
+        const verticalRadius = calculateOptimalRadius(maxY, availableHeight * 0.8);
+        const horizontalRadius = calculateHorizontalRadius(points, x);
+
+        radi = Math.max(0.5, Math.min(verticalRadius, horizontalRadius, mobileFlagged ? 3 : 5));
+        
         const y = MMAPPLETS.GRAPHS.makeScale(
             "linear",
             [0, maxY],
@@ -158,25 +213,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const xAxis = MMAPPLETS.GRAPHS.makeXAxis(
             x
         );
-        console.log(svg);
-        console.log("beans");
+        
         svg
             .append("g")
             .attr("transform", `translate(0, ${height - margin.bottom})`)
             .call(xAxis);
-
-        console.log(origData);
-        console.log(points);
+        if(showTrueValues){
+            MMAPPLETS.GRAPHS.drawLine(svg, x(78.38), y(0), x(78.38), 0, {stroke: "red"});
+        }
         MMAPPLETS.GRAPHS.addTextToAxis(svg, graphName, "x");
     }
 
-
-    /* START OF TEMP STUFF FOR NATHANIEL'S DEBUGGING*/
-    
-
-    /* END OF TEMP STUFF FOR NATHANIEL'S DEBUGGING*/
-    
-    function getRandomEntriesFromMethod(methodNum){
+    function getRandomEntriesFromMethod(methodNum, display = true){
         let entries = [];
         if(methodNum == 1){
             while(entries.length < 10){
@@ -210,27 +258,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
         meanHistoryPerMethod[methodNum-1].push(mean);
 
-        displayEntries(entries);
+        
+        if(display == true){
+            displayEntries(entries);
+    
+            updateGraph(1);
+            updateGraph(2);
+            updateGraph(3);
+        }
 
-        updateGraph(1);
-        updateGraph(2);
-        updateGraph(3);
+        if(meanHistoryPerMethod[0].length > 0 && meanHistoryPerMethod[1].length > 0 && meanHistoryPerMethod[2].length > 0){
+            activateShowTrueButton();
+        }
     }
+
+    function quickAddSamples(){
+        const amountSamples = parseInt(document.getElementById("quickAddAmtInput").value);
+        const outputTo = parseInt(document.getElementById("chooseMethodDropdown").value);
+        for(let x = 0; x < amountSamples; x++){
+            if(x != amountSamples - 1){
+                getRandomEntriesFromMethod(outputTo, false);
+            } else{
+                getRandomEntriesFromMethod(outputTo);
+            }
+        }
+    }
+
+    updateGraph(1);
+    updateGraph(2);
+    updateGraph(3);
 
     document.getElementById("doSimType1btn").addEventListener('click', () => { getRandomEntriesFromMethod(1); });
     document.getElementById("doSimType2btn").addEventListener('click', () => { getRandomEntriesFromMethod(2); });
     document.getElementById("doSimType3btn").addEventListener('click', () => { getRandomEntriesFromMethod(3); });
 
-    document.addEventListener('keydown', (e) => {
-        if(e.key == 'y'){
-            alert(meanHistoryPerMethod[0]);
-        }
-        if(e.key == 'u'){
-            alert(meanHistoryPerMethod[1]);
-        }
-        if(e.key == 'i'){
-            alert(meanHistoryPerMethod[2]);
-        }
-    });
+    document.getElementById("quickAddButton").addEventListener('click', () => { quickAddSamples(); });
     
 });
