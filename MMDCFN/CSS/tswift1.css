@@ -176,6 +176,16 @@
         width: 95%;
     }
     
+    #simulationContainer{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        position: relative;
+        min-width: 35%;
+        min-height: 55%;
+    }
+    
     #graphOutput{
         display: flex;
         flex-direction: column;
