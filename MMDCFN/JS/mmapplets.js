@@ -264,7 +264,7 @@ MMAPPLETS.GRAPHS = {
 
     if (axisType === "x") {
       label
-        .attr("x", width / 2)
+        .attr("x", margin.left / 2 + width / 2)
         .attr("y", height - margin.bottom / (options.offset || 5));
     } else if (axisType === "y") {
       label
