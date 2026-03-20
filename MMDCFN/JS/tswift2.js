@@ -33,8 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if(methodNum == 3){
             
-            // let startAudienceMember = MMAPPLETS.UTIL.getRandomInt(0, 49);
-            let startAudienceMember = 0;
+            let startAudienceMember = MMAPPLETS.UTIL.getRandomInt(0, 49);
             for(let i = 0; i < 10; i++){
                 entries.push((startAudienceMember + (i * 8)) % 50);
             }
