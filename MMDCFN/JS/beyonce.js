@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
             meanHistory[method].push(getMean(getRandomSample(size)));
         }
 
-        updateGraph(2):
+        updateGraph(2);
         updateGraph(3);
     });
 
