@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Does Beyoncé Write Her Own Lyrics?</title>
+        <link rel="icon" href="../ASSETS/favicon.ico" type="image/x-icon"/>
+        
+        <!-- External Libraries for Graphing and Lottie Animation-->
+        
+        <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.13.0/build/player/lottie.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        
+        <!-- Math Medic JS -->
+        <script src="../JS/mmapplets.js"></script>
+        <script src="../JS/beyonce.js"></script>
+        
+        <link rel="stylesheet" href="../CSS/mmapplets.css">
+        <link rel="stylesheet" href="../CSS/beyonce.css">
+        
+    </head>
+    <body>
+        <div class="pageHeader">
+            <img class="headerImage" src="../ASSETS/math-medic-logo.svg" alt="Math Medic Logo">
+            <p class="headbarTitle"><a href="https://portal.mathmedic.com/lesson-plans/course/AP-Statistics/unit/4/day/1" target="_blank">Does Beyoncé Write Her Own Lyrics?</a></p>
+        </div>
+        <div class="pageContent">
+            <h3 id="explanationText">
+                When her hit “Crazy in Love” came out, people started questioning whether or not she had written the lyrics. How do 
+                we use statistics to determine 
+                if Beyoncé wrote the lyrics to “Crazy in Love”?
+                <br><br>
+                It is well known that different authors use different styles and word choice. It turns out that the average word length is fairly consistent for 
+                each author and can be used as a way to distinguish one author from another. 
+                Since we know for sure that Beyoncé wrote the lyrics for all of the Destiny’s Child songs (average word length 3.64), 
+                we should be able to determine her possible authorship of “Crazy in Love” by finding the average word length of “Crazy in Love.”
+            </h3>
+            <p id="instructionsText">For the convenience sample, randomly select 5 different words from the song. (Don't think too hard on it)</p>
+            <div class="sectionContainer">
+                <div id="simulationContainer">
+                    <div id="lyricsContainer">
+                    </div>
+                </div>
+                <div class="analysisDiv">
+                    <div id="simDataContainer">
+                        <div class="buttonHolder">
+                            <button id="doSimType1btn">Method 1: Convenience Sample</button>
+                            <button id="doSimType2btn">Method 2: SRS (5 Words)</button>
+                            <button id="doSimType3btn">Method 3: SRS (20 Words)</button>
+                            <button id="showTrueValBtn">Show True Mean</button>
+                            <p id="trueMeanInfo">True mean: 78.38</p>
+                        </div>
+                    </div>
+                    <div id="simDataOutput">
+                        <p id="yourSampleLenOutput">Your sample average word length: </p>
+                        <p id="lastSimWordLenOutput">Sample average word length: </p>
+                    </div>
+                    <div class="graphsContainer"> 
+                        <div class="graphContainer" id="graphOutput2"></div>
+                        <div class="graphContainer" id="graphOutput3"></div>
+                    </div>
+                    <div id="quickAddContainer">
+                        <label for="quickAddAmtInput">Quick add
+                            <input type="number" inputmode="numeric" id="quickAddAmtInput">
+                        </label>
+                        <label for="chooseMethodDropdown">to the
+                            <select id="chooseMethodDropdown">
+                                <option value="1">5 Simple Random Sample</option>
+                                <option value="2">20 Simple Random Sample</option>
+                            </select>
+                            plot.
+                        </label>
+                        <button id="quickAddButton">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
