@@ -185,6 +185,11 @@
         gap: 0.75em;
     }    
     
+    #lyricsContainer{
+        width: 95%;
+        height: auto;
+    }
+
     svg{
         max-width: 100%;
         height: auto;
