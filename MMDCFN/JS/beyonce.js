@@ -254,8 +254,8 @@ document.addEventListener("DOMContentLoaded", () => {
             meanHistory[method].push(getMean(getRandomSample(size)));
         }
 
+        updateGraph(1);
         updateGraph(2);
-        updateGraph(3);
     });
 
     document.getElementById("showTrueValBtn").addEventListener("click", () => {
