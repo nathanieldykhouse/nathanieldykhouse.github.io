@@ -1,0 +1,200 @@
+#explanationText{
+    padding: 0.5em 1.5em 0.5em 1.5em;
+}
+
+
+.sectionContainer{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-self: center;
+    width: 95%;
+    height: 95%;
+}
+
+.pageContent{
+    display: flex;
+    justify-content: center;
+}
+
+#simulationContainer{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 70%;
+    position: relative;
+    min-width: 25%;
+    min-height: 55%;
+    padding-bottom: 0.5em;
+}
+
+#audienceContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0.5em;
+    min-width: 25%;
+    min-height: 25%;
+    position: relative; 
+}
+
+#tswiftIMG{
+    position: relative;
+    height: auto;
+    width: auto;
+    min-height: 10%;
+    max-height: 6em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.graphsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: auto;
+}
+
+.graphContainer{
+    width: auto;
+    height: auto;
+    min-width: 4em;
+    min-height: 6em;
+}
+
+
+.buttonHolder{
+    display:flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+}
+
+.buttonHolder button{
+    color: #ffffff;
+    background-color: #3EBEB1;
+    font-size: clamp(0.75em, 0.85em, 0.95em);
+    padding: 0.5em;
+    border: 2px solid gray;
+    border-radius: 10px;
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#showTrueValBtn{
+    color: #ffffff;
+    background-color: #90b4b1;
+    font-size: clamp(0.75em, 0.85em, 0.95em);
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0.5em;
+    width: auto;
+    height: auto;
+}
+
+#trueMeanInfo{
+    position: relative;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+#showTrueBtnContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    width: auto;
+    height: 2em;
+    padding-left: 1em;
+}
+
+.trueValues{
+    display: none;
+}
+
+#quickAddContainer{
+    display: none;
+    flex-direction: row;
+    gap: 0.5em;
+    margin: auto;
+    justify-content: center;
+    height: auto;
+    width: auto;
+}
+
+#quickAddContainer *{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#quickAddButton{
+    color: #ffffff;
+    background-color: #3EBEB1;
+    font-size: clamp(0.75em, 0.85em, 0.95em);
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0.3em;
+    width: auto;
+    height: auto;
+}
+
+/* MOBILE STYLING */
+@media (max-width: 600px){
+    html, body{
+        overflow-x: hidden;
+    }
+    
+    .headerImage{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 0.25em;
+    }
+    
+    .pageHeader{
+        display: flex;
+        flex-direction: column;
+        gap: 0.75em;
+    }    
+
+    .graphsContainer{
+        margin-top: 1em;
+    }
+    
+    svg{
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .sectionContainer{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        align-self: center;
+        width: 95%;
+    }
+    
+    #simulationContainer{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        position: relative;
+        min-width: 35%;
+        min-height: 55%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 0.5em;
+    }
+    
+    #graphOutput{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+}
