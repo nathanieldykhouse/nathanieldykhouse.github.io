@@ -216,6 +216,8 @@
         overflow-wrap: break-word;
         word-break: break-word;
         padding: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     #graphOutput{
@@ -225,5 +227,9 @@
         margin-left: auto;
         margin-right: auto;
         width: 90%;
+    }
+
+    #quickAddContainer{
+        padding: 0.5em;
     }
 }
