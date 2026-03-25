@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Is Mrs. Gallas a Good Free Throw Shooter?</title>
+        <link rel="icon" href="../ASSETS/favicon.ico" type="image/x-icon"/>
+        
+        <!-- External Libraries for Graphing and Lottie Animation-->
+        
+        <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.13.0/build/player/lottie.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        
+        <!-- Math Medic JS -->
+        <script src="../JS/mmapplets.js"></script>
+        <script src="../JS/freethrow.js"></script>
+        
+        <link rel="stylesheet" href="../CSS/mmapplets.css">
+        <link rel="stylesheet" href="../CSS/freethrow.css">
+    </head>
+    <body>
+        <div class="pageHeader">
+            <img class="headerImage" src="../ASSETS/math-medic-logo.svg" alt="Math Medic Logo">
+            <p class="headbarTitle"><a href="https://portal.mathmedic.com/lesson-plans/course/AP-Statistics/unit/9/day/1" target="_blank">Is Mrs. Gallas a Good Free Throw Shooter?</a></p>
+        </div>
+        <div class="pageContent">
+            <h3 id="explanationText">
+                Mrs. Gallas claims she is an 80% free throw shooter. To prove her skills, she shoots 50 free throws and makes 32 shots. 
+                Is Mrs. Gallas exaggerating about her free throw skills? 
+                To test Mrs. Gallas’ claim, we will assume she really is an 80% free throw shooter and investigate what results could happen by chance alone. 
+                (The simulation assumes Mrs. Gallas truly is a 80% free throw shooter.)
+            </h3>
+            <div id="sectionContainer">
+                
+                <div class="section" id="section1">
+                    <div class="flexRow" id="sec1">
+                        <div class="flexCol" id="sec2">
+                            <div class="lottieAnimationBox">
+                                <div id="lottieAnimationMAKE"></div>
+                                <div id="lottieAnimationMISS"></div>
+                            </div>
+                            <div id="shotsInfoOutput1Div">
+                                <p id="shotsLabel">Shots:</p>
+                                <p id="shotsInfoOutputText">N/A</p>
+                            </div>
+                            <div id="takeShotsButton">
+                                <button id="shootButton">Shoot!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section" id="section2">
+                    <div id="graphAnalysisDiv" class="flexCol">
+                        <div id="graphOutput"></div>
+                        <div id="graphAnalysisEntry">
+                            
+                        </div>
+                    </div>
+                    <div id="fnsAndQuickAdd" class="flexCol">
+                        <div id="quickAddDiv">
+                            <label for="quickAddInput">Quickly add <input type="number" id="quickAddInput"> simulations. <button id="quickAddSimsBtn">Add</button></label>
+                        </div>
+                        <div id="analyzeDataDiv">
+                            <label for="analyzeDataInput">Count number and percent of samples 
+                                <select id="lOrRSelDropdown">
+                                    <option value="greater">greater</option>
+                                    <option value="less">less</option>
+                                </select> than or equal to 
+                                <input type="number" id="analyzeDataInput">
+                                <button id="countBtn">Count</button>
+                                <button id="removeCountBtn">Hide</button>
+                            </label>
+                            <p id="outputAnalyzedCount"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
