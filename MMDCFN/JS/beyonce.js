@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    let clickedMethod1Btn = false;
+    
     const STATE = {
         INIT: 0,
         CONVENIENCE_READY: 1,
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const populationSize = wordLengths.length;
 
     const meanHistory = [[], [], []];
-    const selectedWords = new Set();
+    let selectedWords = new Set();
 
     const graphTitles = [
         "Average Word Length (Convenience)",
@@ -95,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const w = window.innerWidth;
 
         MMAPPLETS.SETTINGS.graphSettings.margins.left = w <= 600 ? 10 : 60;
-        MMAPPLETS.SETTINGS.graphSettings.height = h * 0.43;
+        MMAPPLETS.SETTINGS.graphSettings.height = h * 0.33;
         MMAPPLETS.SETTINGS.graphSettings.width = w <= 600 ? w * 0.95 : w * 0.55;
     }
 
@@ -119,6 +121,28 @@ document.addEventListener("DOMContentLoaded", () => {
         return all.length
             ? MMAPPLETS.MATH.findMinAndMaxVals(all)
             : [trueMean - 1, trueMean + 1];
+    }
+
+    function processConvenienceSample() {
+
+        const mean = MMAPPLETS.MATH.calculateMean(
+            [...selectedWords].map(w => w.length)
+        );
+
+        meanHistory[0].push(mean);
+
+        document.getElementById("lastSimWordLenOutput").textContent =
+            `Sample average word length: ${mean.toFixed(2)}`;
+
+        if (appState === STATE.CONVENIENCE_READY) {
+            appState = STATE.SRS_READY;
+
+            document.getElementById("doSimType2btn").style.backgroundColor = "#3EBEBE";
+            document.getElementById("doSimType3btn").style.backgroundColor = "#3EBEBE";
+        }
+
+        updateGraph(1);
+        updateGraph(2);
     }
 
     function getHorizontalRadius(points, x) {
@@ -201,28 +225,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.getElementById("doSimType1btn").addEventListener("click", () => {
-        if (selectedWords.size !== 5) return;
 
-        const mean = MMAPPLETS.MATH.calculateMean(
-            [...selectedWords].map(w => w.length)
-        );
+        if (selectedWords.size !== 5) {
+            document.getElementById("instructionsText").style.visibility = "visible";
 
-        meanHistory[0].push(mean);
-
-        document.getElementById("yourSampleLenOutput").textContent =
-            `Your sample average word length: ${mean.toFixed(2)}`;
-
-        if (appState === STATE.CONVENIENCE_READY) {
-            appState = STATE.SRS_READY;
-
-            document.getElementById("doSimType2btn").style.backgroundColor = "#3EBEBE";
-            document.getElementById("doSimType3btn").style.backgroundColor = "#3EBEBE";
+            clickedMethod1Btn = true;
+            highlightSample([]);
+            selectedWords = new Set();
+            return;
         }
+
+        processConvenienceSample();
     });
 
     document.getElementById("doSimType2btn").addEventListener("click", () => {
-        if (appState < STATE.SRS_READY) return;
-
         const sample = getRandomSample(5);
 
         highlightSample(sample);
@@ -238,7 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.getElementById("doSimType3btn").addEventListener("click", () => {
-        if (appState < STATE.SRS_READY) return;
 
         const sample = getRandomSample(20);
 
@@ -328,19 +343,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     span.id = "wordToken" + tokenCnt;
 
                     span.addEventListener("click", e => {
-                        const word = e.target.textContent;
 
-                        if (!selectedWords.has(word) && selectedWords.size < 5) {
-                            selectedWords.add(word);
+                    const word = e.target.textContent;
 
-                            e.target.classList.add("selectedWord");
+                    if (!selectedWords.has(word) && selectedWords.size < 5 && clickedMethod1Btn) {
 
-                            if (selectedWords.size === 5 && appState === STATE.INIT) {
+                        selectedWords.add(word);
+                        e.target.classList.add("selectedWord");
+
+                        if (selectedWords.size === 5) {
+
+                            if (appState === STATE.INIT) {
                                 appState = STATE.CONVENIENCE_READY;
                                 document.getElementById("doSimType1btn").style.backgroundColor = "#3EBEBE";
                             }
+
+                            processConvenienceSample();
                         }
-                    });
+                    }
+                });
 
                     target.appendChild(span);
                     tokenCnt++;
