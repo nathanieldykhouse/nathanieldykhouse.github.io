@@ -9,6 +9,7 @@
     color: red;
     font-size: clamp(0.85em, 0.90em, 0.95em);
     padding-left: 1.5em;
+    visibility: hidden;
 }
 
 .selectedWord{
@@ -45,20 +46,8 @@
     overflow-wrap: break-word;
 }
 
-#doSimType1btn{
-    background-color: #90b4b1;
-}
-
-#doSimType2btn{
-    background-color: #90b4b1;
-}
-
 #lyricsContainer, #lyricsContainer2{
     font-size: clamp(0.8em, 0.85em, 0.9em);
-}
-
-#doSimType3btn{
-    background-color: #90b4b1;
 }
 
 .graphsContainer{
@@ -101,7 +90,7 @@
 
 #lastSimWordLenOutput{
     margin-left: auto;
-    margin-right: 3em;
+    margin-right: auto;
 }
 
 #simDataOutput{
