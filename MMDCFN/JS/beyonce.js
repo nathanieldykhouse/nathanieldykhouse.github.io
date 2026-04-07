@@ -214,13 +214,18 @@ document.addEventListener("DOMContentLoaded", () => {
         MMAPPLETS.GRAPHS.addTextToAxis(svg, graphTitles[method], "x");
 
         if (
+            meanHistory[0].length ||
+            meanHistory[1].length ||
+            meanHistory[2].length
+        ) {
+            document.getElementById("showTrueValBtn").style.backgroundColor = "#3EBEBE";
+        } 
+        if(
             meanHistory[0].length &&
             meanHistory[1].length &&
-            meanHistory[2].length &&
-            appState === STATE.SRS_READY
-        ) {
+            meanHistory[2].length
+        ){
             document.getElementById("quickAddContainer").style.display = "flex";
-            document.getElementById("showTrueValBtn").style.backgroundColor = "#3EBEBE";
         }
     }
 
@@ -284,12 +289,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("showTrueValBtn").addEventListener("click", () => {
 
-        const hasAllData =
-            meanHistory[0].length &&
-            meanHistory[1].length &&
+        const hasData =
+            meanHistory[0].length ||
+            meanHistory[1].length ||
             meanHistory[2].length;
 
-        if (!hasAllData) return;
+        if (!hasData) return;
 
         showTrue = true;
 
