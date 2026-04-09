@@ -219,14 +219,8 @@ document.addEventListener("DOMContentLoaded", () => {
             meanHistory[2].length
         ) {
             document.getElementById("showTrueValBtn").style.backgroundColor = "#3EBEBE";
-        } 
-        if(
-            meanHistory[0].length &&
-            meanHistory[1].length &&
-            meanHistory[2].length
-        ){
             document.getElementById("quickAddContainer").style.display = "flex";
-        }
+        } 
     }
 
     document.getElementById("doSimType1btn").addEventListener("click", () => {
