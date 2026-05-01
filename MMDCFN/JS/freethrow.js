@@ -365,7 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function attemptShot() {
     const shotResult = MMAPPLETS.UTIL.getRandomInt(1, 100);
-    if (shotResult <= 80) {
+    if (shotResult <= 70) {
       //play made animation and push to history
       shotHistory.push(1);
       playFreethrowAnimation(1);
