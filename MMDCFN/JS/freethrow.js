@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const tempSH = [];
         for (let st = 0; st < 50; st++) {
           const shotResult = MMAPPLETS.UTIL.getRandomInt(1, 100);
-          if (shotResult <= 80) {
+          if (shotResult <= 70) {
             tempSH.push(1);
           } else {
             tempSH.push(0);
