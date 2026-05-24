@@ -32,7 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const shotsInfoOutput = document.getElementById("shotsInfoOutputText");
   const shotHistory = [];
 
-  const populationHistory = [];
+    const populationHistory = [];
+
+    let truePercentage = 70;
 
   //radius of dots on graph
   let radi = 5;
@@ -282,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const count = populationHistory.filter((p) => p >= low && p <= high).length;
     const total = populationHistory.length;
-    const proportion = total > 0 ? (count / total).toFixed(2) : "0.00";
+    const proportion = total > 0 ? (count / total).toFixed(3) : "0.00";
 
     const outputText = document.getElementById("outputAnalyzedCount");
     outputText.innerText = `There are ${count} samples (${proportion}) in the selected region.`;
@@ -354,9 +356,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateShotsResultField() {
     const numShotsTaken = shotHistory.length;
     const numShotsMade = shotHistory.reduce((accum, cur) => accum + cur, 0);
-    const percentage = Number((numShotsMade / numShotsTaken).toFixed(2));
+    const percentage = Number((numShotsMade / numShotsTaken).toFixed(3));
 
-    shotsInfoOutput.innerText = `${numShotsMade}/${numShotsTaken} (${(percentage * 100).toFixed(0)}%)`;
+    shotsInfoOutput.innerText = `${numShotsMade}/${numShotsTaken} (${(percentage * 100).toFixed(1)}%)`;
 
     if (shotHistory.length == 50) {
       populationHistory.push(percentage);
@@ -364,8 +366,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function attemptShot() {
-    const shotResult = MMAPPLETS.UTIL.getRandomInt(1, 100);
-    if (shotResult <= 70) {
+      const shotResult = MMAPPLETS.UTIL.getRandomInt(1, 100);
+      if (shotResult <= truePercentage) {
       //play made animation and push to history
       shotHistory.push(1);
       playFreethrowAnimation(1);
@@ -377,6 +379,22 @@ document.addEventListener("DOMContentLoaded", function () {
     updateShotsResultField();
   }
 
+  //add listener to the true percentage input box to allow for automatic percentage change, defaults to 70 if no number is input.
+
+    document.getElementById("trueInputContainer").addEventListener("change", (e) => {
+        if (parseFloat(e.target.value)) {
+            if (parseFloat(e.target.value) > 100 || parseFloat(e.target.value) < 0) {
+                truePercentage = 70;
+                alert("True percentage must remain within the bounds 0 \u2264 x \u2264 100")
+            } else {
+                truePercentage = parseFloat(e.target.value);
+            }
+        } else {
+            alert("Invalid input");
+            truePercentage = 70;
+        }
+    });
+
   //add listener to the quick add button
   document
     .getElementById("quickAddSimsBtn")
@@ -386,8 +404,8 @@ document.addEventListener("DOMContentLoaded", function () {
         //simulate 50 shots and push it to population history
         const tempSH = [];
         for (let st = 0; st < 50; st++) {
-          const shotResult = MMAPPLETS.UTIL.getRandomInt(1, 100);
-          if (shotResult <= 70) {
+            const shotResult = MMAPPLETS.UTIL.getRandomInt(1, 100);
+            if (shotResult <= truePercentage) {
             tempSH.push(1);
           } else {
             tempSH.push(0);
@@ -395,7 +413,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         const numShotsTaken = 50;
         const numShotsMade = tempSH.reduce((accum, cur) => accum + cur, 0);
-        const percentage = Number((numShotsMade / numShotsTaken).toFixed(2));
+        const percentage = Number((numShotsMade / numShotsTaken).toFixed(3));
         populationHistory.push(percentage);
       }
       updateOutputs();
