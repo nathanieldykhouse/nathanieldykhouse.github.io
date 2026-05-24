@@ -4,8 +4,9 @@
     padding: 1.5em;
 }
 
-#trueInputLabel{
+#trueInputLabel {
     padding-left: 1.5em;
+    font-family: "Avenir Next", "Avenir Next LT", "Avenir", "Helvetica Neue", Arial, sans-serif;
 }
 
 #trueInputContainer{
